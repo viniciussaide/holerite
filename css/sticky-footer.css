@@ -1,0 +1,51 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+  overflow: auto;
+}
+body {
+  padding-top: 50px;
+  /* Margin bottom by footer height */
+  margin-bottom: 120px;
+  overflow-x: hidden;
+}
+
+ ::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #4ca391;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+} 
+
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 120px;
+	background-color: #4ca391;
+	border-top: 1px solid #ddd;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
