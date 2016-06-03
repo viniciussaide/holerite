@@ -65,7 +65,7 @@ class Login
 				
 
                 //Query para buscar matrícula no banco
-                $sql = "SELECT matricula, nome, user_password_hash, uniqueCode, id_sessao, user_type
+                $sql = "SELECT matricula, nome, user_password_hash, uniqueCode, id_sessao
                         FROM users
                         WHERE matricula = '$matricula'";
                 $result_of_login_check = $this->db_connection->query($sql);
@@ -100,7 +100,13 @@ class Login
 								$_SESSION['primeiro_nome'] = $nome[0];
 								$_SESSION['ultimo_nome'] = $nome[count($nome)-1];
 								$_SESSION['user_login_status'] = 1;
-								$_SESSION['user_type'] = $result_row->user_type;
+								$sql = "SELECT * FROM `relacao_type_user` join user_type on relacao_type_user.fk_id_user_type=user_type.id_user_type Where relacao_type_user.fk_matricula='$matricula'";
+								$result = $this->db_connection->query($sql);
+								$user_type = array();
+								while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+									$user_type[] = $row['type'];
+								}
+								$_SESSION['user_type'] = $user_type;
 								if (!isset($_SESSION['id_sessao'])){
 									$_SESSION['id_sessao'] = $_POST['id_sessao'];
 									$_SESSION['tempo_sessao'] = time()+SESSION_TIME;

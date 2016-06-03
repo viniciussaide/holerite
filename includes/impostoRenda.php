@@ -1,7 +1,7 @@
 <?php
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("Erro ao conectar");
 $bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
-$sql_ir = "SELECT nome_arquivo FROM imposto_arquivo WHERE matricula=$_SESSION[user_name]";
+$sql_ir = "SELECT nome_arquivo FROM imposto_arquivo WHERE fk_matricula=$_SESSION[user_name]";
 $result_ir =  mysqli_query($conn, $sql_ir);
 $row_ir = mysqli_fetch_array($result_ir, MYSQL_ASSOC);
 $imposto_arquivo = $row_ir['nome_arquivo'];

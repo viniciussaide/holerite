@@ -2,8 +2,6 @@
 	if(isset($_GET["pagina"])){
 		$pagina = $_GET["pagina"];
 	}
-	@$id = $_REQUEST['id'];
-	echo $id;
 	if(@$pagina == "")
 		include("includes/home.php");
 	elseif($pagina == "home.php")

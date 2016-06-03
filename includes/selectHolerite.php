@@ -55,11 +55,11 @@
 	
 	
 	//seleciona dados da tabela holerite
-	$sql_holerite = "SELECT * FROM holerite WHERE matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']."' ";
+	$sql_holerite = "SELECT * FROM holerite WHERE fk_matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']."' ";
 	$result = mysqli_query($conn, $sql_holerite);
 	if(mysqli_query($conn, $sql_holerite)) {
 	while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-			$user_name = $row["matricula"];
+			$user_name = $row["fk_matricula"];
 			$nome = $row["nome"];
 			$mes = $row["mes"];
 			$ano = $row["ano"];
@@ -86,7 +86,7 @@
     <?php
 	
 	//seleciona dados da tabela provento
-	$sql_provento = "SELECT * FROM provento WHERE matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']."' ";
+	$sql_provento = "SELECT * FROM provento WHERE fk_matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']."' ";
 	$result = mysqli_query($conn, $sql_provento);
 	if (!$result) {
     	printf("Error: %s\n", mysqli_error($conn));
@@ -109,7 +109,7 @@
 	<?php
 	}
 	//seleciona dados da tabela desconto
-	$sql_provento = "SELECT * FROM desconto WHERE matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']." ' ";
+	$sql_provento = "SELECT * FROM desconto WHERE fk_matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']." ' ";
 	$result = mysqli_query($conn, $sql_provento);
 	if (!$result) {
     	printf("Error: %s\n", mysqli_error($conn));

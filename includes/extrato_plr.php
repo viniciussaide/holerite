@@ -2,7 +2,7 @@
 	$user_name = $_SESSION['user_name'];
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("Erro ao conectar");
 	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
-	$query = "SELECT * FROM plr WHERE matricula = '$user_name'";
+	$query = "SELECT * FROM plr WHERE fk_matricula = '$user_name'";
 	$result = mysqli_query($conn, $query);
 	if(mysqli_num_rows($result)>=1) {
 		?>
