@@ -16,3 +16,4 @@
 	</div>
   </div>
 </div>
+<?php include("includes/form_troca_senha.php");?>

@@ -48,9 +48,7 @@
 	
 
 	
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS)
-	or die ("erro ao conectar");
-	
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("erro ao conectar");
 	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
 	
 	

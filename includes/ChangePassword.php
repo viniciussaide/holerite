@@ -31,17 +31,16 @@
 				$query_atualiza_senha = "UPDATE users SET user_password_hash = '".$senha_nova."' WHERE matricula ='".$user_name."'";
 				$result = mysqli_query($conn, $query_atualiza_senha);
 				if($result) {
-					header("Location: index.php?pagina=SenhaSucesso.php");
+					include "includes/SenhaSucesso.php";
                 }	
 			} else {
-				header("Location: index.php?pagina=SenhaNcombinam.php");
-				echo "<div class='alert alert-danger' role='alert'>";
+				include "includes/SenhaNcombinam.php";
 			}
         } else {
-			header("Location: index.php?pagina=SenhaErrada.php");
+			include "includes/SenhaErrada.php";
         }
     } else {
-		header("Location: index.php?pagina=UserErrado.php");
+		include "includes/UserErrado.php";
     }
 	
 

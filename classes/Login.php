@@ -104,7 +104,7 @@ class Login
 								$result = $this->db_connection->query($sql);
 								$user_type = array();
 								while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-									$user_type[] = $row['type'];
+									$user_type[] = $row['id_user_type'];
 								}
 								$_SESSION['user_type'] = $user_type;
 								if (!isset($_SESSION['id_sessao'])){

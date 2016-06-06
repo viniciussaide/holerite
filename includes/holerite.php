@@ -1,6 +1,11 @@
 
 <?php
 include 'verifica_senha.php';
+
+if(isset($_POST['data'])){
+	include 'selectHolerite.php';
+}
+else {
 ?>
 	<div class="row">
         <div class="col-md-3">
@@ -11,7 +16,7 @@ include 'verifica_senha.php';
 				<h3 class="panel-title"><strong>Selecione a holerite do período desejado:</strong></h3>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="?pagina=selectHolerite.php" method="POST">
+					<form class="form-horizontal" action="?pagina=holerite.php" method="POST">
 					<div style='text-align:center;'>
 						<?php
 						include 'selectAno.php'
@@ -22,3 +27,4 @@ include 'verifica_senha.php';
 			</div>
 		</div>
 	</div>
+<?php } ?>

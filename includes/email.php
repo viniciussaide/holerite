@@ -7,7 +7,7 @@ $headers  = 'From: Holerite_Online' . "\r\n" .
             'MIME-Version: 1.0' . "\r\n" .
             'Content-type: text/html; charset=utf-8';
 if(mail($to, $subject, $message, $headers))
-	header("Location: index.php?pagina=EmailSucesso.php");
+	include "includes/EmailSucesso.php";
 else
-	header("Location: index.php?pagina=EmailErro.php");
+	include "includes/EmailErro.php";
 ?>

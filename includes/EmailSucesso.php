@@ -3,3 +3,4 @@
 E-mail enviado com sucesso
 </div>
 <p></p>
+<?php include "includes/form_contato.php";?>

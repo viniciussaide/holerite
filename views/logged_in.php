@@ -47,7 +47,7 @@
 			  <?php echo "<b>$_SESSION[primeiro_nome]"." "."$_SESSION[ultimo_nome]"; ?>, você está logado</b>
 			  <span class="caret"></span></a>
 				<ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="?pagina=form_troca_senha.php"><b>Alterar Senha</b></a></li>
+                <li><a href="?pagina=troca_senha.php"><b>Alterar Senha</b></a></li>
                 <li><a href=index.php?logout><b>Logout</b></a></li>
 				</ul>
             </li>		
