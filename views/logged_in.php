@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head class=hidden-print>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +60,11 @@
 	<div class="jumbotron hidden-xs hidden-print">
 		<img class="img-responsive navbar-default" src="imgs/holerite.png" width="80%">
     </div>
-	
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+		Selecione .csv: 
+		<input type="file" name="teste" id='teste' accept=".xls,.xlsx,.csv,.txt">
+		<input type="submit" value="Enviar Arquivo" name="submit">
+	</form>
     <div class="container" style="padding-top:15px;">
 		<?php include "pagina.php";?>
 	</div>

@@ -32,7 +32,6 @@ if ($num_rows==1){
 		readfile($file);
 		exit;
 	}
-	
 }
 else{
 	echo "<p><div class='alert alert-danger' role='alert' align=center>Prezado colaborador, infelizmente não há informe de rendimento neste período!</div></div></p>";

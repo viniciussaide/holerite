@@ -2,8 +2,29 @@
 	if(isset($_GET["pagina"])){
 		$pagina = $_GET["pagina"];
 	}
-	
- 	if(@$pagina == "")
+	else {
+		$pagina = "home.php";
+	}
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("erro ao conectar");
+	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
+	foreach ($_SESSION['user_type'] as $type){
+		if ($restricao<>''){
+			$restricao .= " OR ";
+		}
+		$restricao .= "fk_id_user_type = $type";
+	}
+	$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE $restricao";
+	$result = mysqli_query($conn, $query);
+	if ($result){
+		while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+			$pagina_php = $row['pagina_php'];
+			if ($pagina==$pagina_php){
+				include "includes/".$pagina_php;
+				break;
+			}
+		}
+	}
+ 	/* if(@$pagina == "")
 		include("includes/home.php");
 	elseif($pagina == "home.php")
 		include("includes/home.php");
@@ -40,5 +61,5 @@
 	elseif($pagina == "extrato_plr.php")
 		include("includes/extrato_plr.php");
 	else
-		include("includes/home.php"); 
+		include("includes/home.php");  */
 ?>
