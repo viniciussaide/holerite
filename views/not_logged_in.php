@@ -153,7 +153,7 @@
 			<!--End Modal-->
 	<div class="well">
 	<p style="font-size:16px;"><b>Seja bem vindo!</b></p><br>
-		<p>
+		<p align='justify'>
 		Este é o mais novo portal com informações relevantes para facilitar a comunicação entre a empresa
 		<b><i>Sankyu S/A</i></b> e seus colaboradores. O intuito principal, é a disponibilização dos holerites (contra-cheques) dos últimos 6 meses.
 		Ou seja, todo colaborador poderá acessar e imprimir o seu contra-cheque de qualquer lugar, no trabalho, de casa, pelo seu smartphone, 

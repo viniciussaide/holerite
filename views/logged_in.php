@@ -39,7 +39,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-			<?php include "views/sessao.php"; ?>
+			<?php include "views/menu_superior.php"; ?>
+			
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
@@ -47,29 +48,18 @@
 			  <?php echo "<b>$_SESSION[primeiro_nome]"." "."$_SESSION[ultimo_nome]"; ?>, você está logado</b>
 			  <span class="caret"></span></a>
 				<ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="?pagina=troca_senha.php"><b>Alterar Senha</b></a></li>
-                <li><a href=index.php?logout><b>Logout</b></a></li>
+                <li><a href="?pagina=troca_senha.php"><span class="glyphicon glyphicon-user"></span> <b>Alterar Senha</b></a></li>
+                <li><a href=index.php?logout><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a></li>
 				</ul>
             </li>		
 			</ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-	<div class="jumbotron hidden-xs hidden-print">
-		<img class="img-responsive navbar-default" src="imgs/holerite.png" width="80%">
-    </div>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-		Selecione .csv: 
-		<input type="file" name="teste" id='teste' accept=".xls,.xlsx,.csv,.txt">
-		<input type="submit" value="Enviar Arquivo" name="submit">
-	</form>
-    <div class="container" style="padding-top:15px;">
-		<?php include "pagina.php";?>
-	</div>
-	<!-- /container -->
-	
+<div class="container-fluid">
+<?php include "views/restricao_menu_lateral.php"; ?>
+</div>	
+<!-- /container -->
 <?php include "includes/footer.php"; ?>
 
 
@@ -88,6 +78,15 @@
 	<script>
 	$(document).ready(function() {
 		$('.navbar-nav a[href="'+location.search+'"]').parents('li').addClass('active');
+	});
+	
+	//Change glyphicon collapse right/down
+	$('.collapse').on('shown.bs.collapse', function () {
+    $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+	});
+	//Change glyphicon collapse down/right
+	$('.collapse').on('hidden.bs.collapse', function () {
+		$(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
 	});
 	</script>
   </body>

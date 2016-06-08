@@ -1,3 +1,10 @@
+<!--
+<form action="upload.php" method="post" enctype="multipart/form-data">
+	Selecione .csv: 
+	<input type="file" name="teste" id='teste' accept=".xls,.xlsx,.csv,.txt">
+	<input type="submit" value="Enviar Arquivo" name="submit">
+</form>
+-->
 <?php
 $uploaddir = 'upload/';
 $uploadfile = $uploaddir . basename($_FILES['teste']['name']);

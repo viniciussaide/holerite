@@ -34,5 +34,4 @@
 			}
 		}
 	}
-	//echo $restricao;
 ?>

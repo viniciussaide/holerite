@@ -1,4 +1,5 @@
 <?php
+require 'php-debug-bar/Kint.class.php';
 
 // checking for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
@@ -72,3 +73,9 @@ if ($login->isUserLoggedIn() == true) {
 	//Caso usuário não possua sessão abre página inicial
     include("views/not_logged_in.php");
 }
+
+Kint::dump( $_COOKIE );
+Kint::dump( $restricao );
+Kint::dump( $_SESSION );
+Kint::dump( $GLOBALS );
+
