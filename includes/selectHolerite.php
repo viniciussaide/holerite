@@ -48,7 +48,7 @@
 	
 
 	
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("erro ao conectar");
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("Erro ao conectar");
 	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
 	
 	
@@ -57,6 +57,7 @@
 	$result = mysqli_query($conn, $sql_holerite);
 	if(mysqli_query($conn, $sql_holerite)) {
 	while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+			$id_holerite = $row['id_holerite'];
 			$user_name = $row["fk_matricula"];
 			$nome = $row["nome"];
 			$mes = $row["mes"];
@@ -78,13 +79,13 @@
     <!-- Inicio da tabela do holerite para apresentação e impressão -->
 			<div align=right><b>Competência: </b><?php echo $mes."/".$ano; ?></div>
 			<div align=right><b> Data do Crédito: </b><?php echo $novaData; ?></div>
-			<tr style="font-weight:bold;border-top: 1px solid #D5D5D5;border-bottom: 1px solid #D5D5D5;" bgcolor="#D5D5D5"><td>Matrícula</td><td  colspan=2>Nome</td><td>CPF</td></tr>
+			<thead style="font-weight:bold;border-top: 1px solid #D5D5D5;border-bottom: 1px solid #D5D5D5;" bgcolor="#D5D5D5"><td>Matrícula</td><td  colspan=2>Nome</td><td>CPF</td></thead>
         	<tr><td><?php echo $user_name; ?></td><td colspan=2><?php echo $nome; ?></td><td><?php echo $cpf_mask; ?>
-	        <tr style="font-weight:bold;font-size:12px;border-top: 1px solid #D5D5D5;border-bottom: 1px solid #D5D5D5;" bgcolor="#D5D5D5"><td>Código</td><td>Discriminação</td><td align=right>Proventos</td><td align=right>Descontos</td></tr>
+	        <thead style="font-weight:bold;font-size:12px;border-top: 1px solid #D5D5D5;border-bottom: 1px solid #D5D5D5;" bgcolor="#D5D5D5"><td>Código</td><td>Discriminação</td><td align=right>Proventos</td><td align=right>Descontos</td></thead>
     <?php
 	
 	//seleciona dados da tabela provento
-	$sql_provento = "SELECT * FROM provento WHERE fk_matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']."' ";
+	$sql_provento = "SELECT * FROM provento WHERE fk_holerite = '$id_holerite'";
 	$result = mysqli_query($conn, $sql_provento);
 	if (!$result) {
     	printf("Error: %s\n", mysqli_error($conn));
@@ -107,7 +108,7 @@
 	<?php
 	}
 	//seleciona dados da tabela desconto
-	$sql_provento = "SELECT * FROM desconto WHERE fk_matricula = '$user_name' AND data_credito='".$_SESSION['data_credito']." ' ";
+	$sql_provento = "SELECT * FROM desconto WHERE fk_holerite = '$id_holerite'";
 	$result = mysqli_query($conn, $sql_provento);
 	if (!$result) {
     	printf("Error: %s\n", mysqli_error($conn));
@@ -130,22 +131,30 @@
 			
 	}
 	?>
-        <tr style="font-weight:bold;font-size:12px;border-top: 1px solid #D5D5D5;" bgcolor="#D5D5D5"align=right><td>Base INSS</td><td>Base IRRF</td><td>Total Proventos</td><td>Total Descontos</td>
-        <tr style="font-size:12px;">
-		<td align="right"><?php echo $base_inss; ?>
-		</td><td align="right"><?php echo $base_irrf; ?>
-		</td><td align="right"><?php echo $total_credito; ?>
-		</td><td align="right"><?php echo $total_debito; ?></td></tr>
-		<tr style="font-weight:bold; font-size:12px; border-top: 1px solid #D5D5D5;" bgcolor="#D5D5D5" align=right>
-		<td>Base FGTS</td><td>Valor FGTS</td><td>Salário Base</td><td>Total Líquido</td>
-		</tr>
+        <thead style="font-weight:bold;font-size:12px;border-top: 1px solid #D5D5D5;" bgcolor="#D5D5D5"align=right>
+			<td>Base INSS</td>
+			<td>Base IRRF</td>
+			<td>Total Proventos</td>
+			<td>Total Descontos</td>
+		</thead>
 		<tr style="font-size:12px;">
-		<td align="right"><?php echo $base_fgts; ?>
-		</td><td align="right"><?php echo $fgts_mes; ?>
-		<td align=right><?php echo $salario_base; ?>
-		</td><td align="right"><?php echo "R$ ". $valor_liquido; ?>
-		</td></tr>
-        </tr>	
+			<td align="right"><?php echo $base_inss; ?></td>
+			<td align="right"><?php echo $base_irrf; ?></td>
+			<td align="right"><?php echo $total_credito; ?></td>
+			<td align="right"><?php echo $total_debito; ?></td>
+		</tr>
+		<thead style="font-weight:bold; font-size:12px; border-top: 1px solid #D5D5D5;" bgcolor="#D5D5D5" align=right>
+			<td>Base FGTS</td>
+			<td>Valor FGTS</td>
+			<td>Salário Base</td>
+			<td>Total Líquido</td>
+		</thead>
+		<tr style="font-size:12px;">
+			<td align="right"><?php echo $base_fgts; ?></td>
+			<td align="right"><?php echo $fgts_mes; ?></td>
+			<td align="right"><?php echo $salario_base; ?></td>
+			<td align="right"><?php echo "R$ ". $valor_liquido; ?></td>
+		</tr>
     <?php
 	} else
 		echo "Não existe holerite para este período.";

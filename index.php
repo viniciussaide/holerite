@@ -74,8 +74,13 @@ if ($login->isUserLoggedIn() == true) {
     include("views/not_logged_in.php");
 }
 
-Kint::dump( $_COOKIE );
-Kint::dump( $restricao );
-Kint::dump( $_SESSION );
-Kint::dump( $GLOBALS );
+if (isset($_SESSION['user_type'])){
+	foreach ($_SESSION['user_type'] as $type){
+		if ($type==1){
+			Kint::dump( $_COOKIE );
+			Kint::dump( $_SESSION );
+			Kint::dump( $GLOBALS );
+		}
+	}
+}
 

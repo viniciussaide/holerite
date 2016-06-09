@@ -1,7 +1,7 @@
 <div class="jumbotron hidden-xs hidden-print">
 	<img class="img-responsive navbar-default" src="imgs/holerite.png" width="80%">
 </div>
-<div class="container" style="padding-top:15px;">
+<div style="padding-top:15px;">
 <?php	
 	if(isset($_GET["pagina"])){
 		$pagina = $_GET["pagina"];

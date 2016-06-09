@@ -2917,8 +2917,7 @@ box-shadow:none
 border-color:transparent
  }  
 .btn-link:focus,.btn-link:hover{ 
-color:#23527c; 
-text-decoration:underline; 
+color:#23527c;
 background-color:transparent
  }  
 .btn-link[disabled]:focus,.btn-link[disabled]:hover,fieldset[disabled] .btn-link:focus,fieldset[disabled] .btn-link:hover{ 

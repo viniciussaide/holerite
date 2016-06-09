@@ -41,7 +41,10 @@ background-color:#999;
 border-color:#999;
 }
 
-
+.btn-branco {
+background-color: #FFFFFF;
+border-radius: 10px;
+}
 
 @media (min-width: 768px) and (max-width: 991px) {
     .navbar-collapse.collapse {

@@ -16,4 +16,22 @@ include 'verifica_senha.php';
     <p align='justify'>Qualquer dúvida, crítica ou sugestões referentes a este novo canal de comunicação, favor entrar em contato <a href="?pagina=contato.php">clicando aqui.</a>Teremos o prazer em solucionar qualquer questão.
 	</p>
 </div>
-</div>
+
+<?php
+/* 	$conn = mysqli_connect(DB_HOST, DB_USER_ROOT, DB_PASS_ROOT) or die ("Erro ao conectar");
+	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
+	$query = "SELECT * FROM holerite";
+	$result = mysqli_query($conn, $query);
+	if ($result){
+		while($row = mysqli_fetch_array($result, MYSQL_ASSOC)){
+			$id_holerite = $row['id_holerite'];
+			$matricula = $row['fk_matricula'];
+			$data_credito = $row['data_credito'];
+			$query = "UPDATE provento SET fk_holerite='$id_holerite' WHERE fk_matricula='$matricula' AND data_credito='$data_credito'";
+			mysqli_query($conn, $query);
+			$query = "UPDATE desconto SET fk_holerite='$id_holerite' WHERE fk_matricula='$matricula' AND data_credito='$data_credito'";
+			mysqli_query($conn, $query);
+		}
+	}
+	mysqli_close($conn); */
+?>
