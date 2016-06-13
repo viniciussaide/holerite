@@ -56,6 +56,9 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
+<div class="hidden-xs hidden-print navbar-default clearfix">
+	<img class="pull-right" src="imgs/holerite.png" width="80%">
+</div>
 <div class="container-fluid">
 <?php include "views/restricao_menu_lateral.php"; ?>
 </div>	
@@ -82,12 +85,38 @@
 	
 	//Change glyphicon collapse right/down
 	$('.collapse').on('shown.bs.collapse', function () {
-    $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+		$(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
 	});
 	//Change glyphicon collapse down/right
 	$('.collapse').on('hidden.bs.collapse', function () {
 		$(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
 	});
+	//Selecionar todos itens da lista prioridade
+	$('#alterar').click(function() {
+        $('#prioridades option').prop('selected', true);
+    });
+	
+	//Mover para cima ou para baixo para prioridade
+	$(document).ready(function() {
+		$('#move-up').click(moveUp);
+		$('#move-down').click(moveDown);
+	});
+
+	function moveUp() {
+		$('#prioridades :selected').each(function(i, selected) {
+			if (!$(this).prev().length) return false;
+			$(this).insertBefore($(this).prev());
+		});
+		$('#prioridades').focus().blur();
+	}
+
+	function moveDown() {
+		$($('#prioridades :selected').get().reverse()).each(function(i, selected) {
+			if (!$(this).next().length) return false;
+			$(this).insertAfter($(this).next());
+		});
+		$('#prioridades').focus().blur();
+	}
 	</script>
   </body>
 </html>

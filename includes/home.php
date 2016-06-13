@@ -1,6 +1,7 @@
 <?php
 include 'verifica_senha.php';
 ?>
+
 <div class="well">
     <p style="font-size:16px;"><b>Seja bem vindo!</b></p><br>
     <p align='justify'>
