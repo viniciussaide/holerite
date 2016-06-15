@@ -1,7 +1,5 @@
 <?php
 	$user_name = $_SESSION['user_name'];
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("Erro ao conectar");
-	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
 	$query = "SELECT * FROM plr WHERE fk_matricula = '$user_name'";
 	$result = mysqli_query($conn, $query);
 	if(mysqli_num_rows($result)>=1) {
@@ -26,7 +24,7 @@
 				<div align=center><b>EXTRATO PLR</b></div>
 		<?php
 		while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-			$user_name = $row["matricula"];
+			$user_name = $row["fk_matricula"];
 			$situacao = $row["situacao"];
 			$base_fixa = $row["base_fixa"];
 			$falta_just = $row["falta_just"];

@@ -7,7 +7,7 @@
 			<h3 class="panel-title"><strong>Dúvidas, conselhos, problemas e elogios...</br>Deixe sua mensagem aqui!</strong></h3>
 			</div>
 			<div class="panel-body">
-			<form class="form-horizontal" action="?pagina=email.php" method="POST" id="formulario">
+			<form class="form-horizontal" action="?pagina=contato.php" method="POST" id="formulario">
 				<p><div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
 					<input type="text" class="form-control" name="assunto" placeholder="Assunto" required maxlength="60">                                        

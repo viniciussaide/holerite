@@ -23,7 +23,7 @@
 					$funcao = $row['funcao'];
 					$nome_menu = $row['nome_menu'];
 					$pagina_php = $row['pagina_php'];
-					echo "<button type='submit' class='list-group-item' value='$id_funcao' name='funcao'><div class='col-xs-4'>$funcao</div><div class='col-xs-4'>$nome_menu</div><div class='col-xs-4'>$pagina_php</div></button>";
+					echo "<button type='submit' class='list-group-item' value='$id_funcao' name='seleciona_funcao'><div class='col-xs-4'>$funcao</div><div class='col-xs-4'>$nome_menu</div><div class='col-xs-4'>$pagina_php</div></button>";
 				}
 			}
 		?>

@@ -2,7 +2,7 @@
 <?php
 include 'verifica_senha.php';
 
-if(isset($_POST['data'])){
+if(isset($_SESSION['posts']['data'])){
 	include 'selectHolerite.php';
 }
 else {

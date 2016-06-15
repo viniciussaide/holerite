@@ -103,10 +103,17 @@ class Login
 								$sql = "SELECT * FROM `relacao_type_user` join user_type on relacao_type_user.fk_id_user_type=user_type.id_user_type Where relacao_type_user.fk_matricula='$matricula'";
 								$result = $this->db_connection->query($sql);
 								$user_type = array();
+								$_SESSION['query_restricao'] = '';
 								while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 									$user_type[] = $row['id_user_type'];
 								}
 								$_SESSION['user_type'] = $user_type;
+								foreach ($_SESSION['user_type'] as $type){
+									if ($_SESSION['query_restricao']<>''){
+										$_SESSION['query_restricao'] .= " OR ";
+									}
+									$_SESSION['query_restricao'] .= "fk_id_user_type = $type";
+								}
 								if (!isset($_SESSION['id_sessao'])){
 									$_SESSION['id_sessao'] = $_POST['id_sessao'];
 									$_SESSION['tempo_sessao'] = time()+SESSION_TIME;
@@ -115,6 +122,7 @@ class Login
 									$sql = "UPDATE users SET id_sessao = '$id_sessao' WHERE matricula ='$matricula'";
 									$this->db_connection->query($sql);
 								}
+								header ("location:index.php?pagina=home.php");
 							}
 							elseif (($_SESSION['tempo_sessao']<time()) AND (isset($_SESSION['id_sessao']))) {
 								//Caso exista uma sessão aberta e o tempo da sessao se esgotou, expira login

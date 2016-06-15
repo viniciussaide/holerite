@@ -1,17 +1,13 @@
-		<div align=right class=hidden-print>
-			<p>
-			  <button type="button" class="btn btn-default" onClick=window.print()>
-			  <span><i class="glyphicon glyphicon-print"></i></span> Imprimir</button>
-			</p>
-		</div>	
+<div align=right class=hidden-print>
+	<p>
+	  <button type="button" class="btn btn-default" onClick=window.print()>
+	  <span><i class="glyphicon glyphicon-print"></i></span> Imprimir</button>
+	</p>
+</div>	
 <?php
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("erro ao conectar");
-$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
 $espaco = 0;
-
-
-if(!empty($_POST['matriculas'])) {
-    foreach($_POST['matriculas'] as $matricula) {
+if(!empty($_SESSION['posts']['matriculas'])) {
+    foreach($_SESSION['posts']['matriculas'] as $matricula) {
 		$query = "SELECT * FROM users WHERE matricula=$matricula";
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_array($result,  MYSQL_ASSOC);
@@ -55,5 +51,8 @@ if(!empty($_POST['matriculas'])) {
 			echo "</br></br></br></br>";
 		}
 	}
+}
+else {
+	echo "Selecione alguma matrícula.";
 }
 ?>

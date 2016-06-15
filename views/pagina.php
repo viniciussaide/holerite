@@ -1,14 +1,6 @@
 <div style="padding-top:15px;">
 <?php	
-	if(isset($_GET["pagina"])){
-		$pagina = $_GET["pagina"];
-	}
-	else {
-		$pagina = "home.php";
-	}
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("erro ao conectar");
-	$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
-	$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE $restricao";
+	$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao'];
 	$result = mysqli_query($conn, $query);
 	if ($result){
 		while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {

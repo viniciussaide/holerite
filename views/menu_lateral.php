@@ -1,17 +1,14 @@
 <!-- Left column -->
 <div class="row">
-	<div class="col-sm-2">
+	<div class="col-md-2 hidden-print">
 	<hr>
 	<div align='center'>
 		<strong><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Ferramentas</strong>
 	</div>
 	<hr>
 	<ul class="nav nav-stacked">
-	<?php	
-		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die ("Erro ao conectar");
-		$bd = mysqli_select_db($conn, DB_NAME) or die("Não foi possível selecionar o banco de dados.");
-		mysqli_set_charset($conn, "utf8");
-		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE $restricao GROUP BY id_funcao ORDER BY prioridade";
+	<?php
+		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao']." GROUP BY id_funcao ORDER BY prioridade";
 		$result = mysqli_query($conn, $query);
 		if ($result){
 			while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
@@ -26,7 +23,7 @@
 					echo "<li class='nav-header'><a href=".$pagina_php." data-toggle='collapse' data-target='#".$id_funcao."'><b>".$nome_menu."</b> <span class='glyphicon glyphicon-chevron-down'></span></a><ul class='nav nav-stacked collapse in' id='".$id_funcao."'>";
 					$query = "SELECT * FROM funcao JOIN relacao_type_funcao 
 								ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao 
-								WHERE (".$restricao.") AND  tipo_menu=".$id_funcao." 
+								WHERE (".$_SESSION['query_restricao'].") AND  tipo_menu=".$id_funcao." 
 								GROUP BY id_funcao
 								ORDER BY prioridade";
 					$result_2 = mysqli_query($conn, $query);
@@ -48,7 +45,7 @@
 	<hr>
 	<!-- End Left column -->
 	</div>
-	<div class="col-sm-10">
+	<div class="col-md-10">
 		<?php include "pagina.php";?>
 	</div>
 </div>

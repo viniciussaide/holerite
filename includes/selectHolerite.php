@@ -14,14 +14,14 @@
 		</h6>
 <?php
 	$user_name = $_SESSION['user_name'];
-	if(isset($_POST['data'])){
-		$_SESSION['data_credito'] = $_POST['data'];
+	if(isset($_SESSION['posts']['data'])){
+		$_SESSION['data_credito'] = $_SESSION['posts']['data'];
 		$mes = substr($_SESSION['data_credito'],0,2);
 		$dia = substr($_SESSION['data_credito'],2,2);
 		$ano = substr($_SESSION['data_credito'],4,4);
 	}
 	else{
-		$_SESSION['data_credito'] = $_POST['data'];
+		$_SESSION['data_credito'] = $_SESSION['posts']['data'];
 		$mes = substr($_SESSION['data_credito'],0,2);
 		$dia = substr($_SESSION['data_credito'],2,2);
 		$ano = substr($_SESSION['data_credito'],4,4);
@@ -156,8 +156,11 @@
 			<td align="right"><?php echo "R$ ". $valor_liquido; ?></td>
 		</tr>
     <?php
-	} else
+	}
+	else {
 		echo "Não existe holerite para este período.";
+	}
+	unset($_SESSION['posts']);
 ?>
     </table>   
 </body>

@@ -1,8 +1,8 @@
 <script type="text/javascript" src="js/verifica_senha_iguais.js"></script>
 <div class="row">
-	<div class="col-md-4 col-sm-3">
+	<div class="col-md-3">
 	</div>
-	<div class="col-md-5 col-sm-6">
+	<div class="col-md-6">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 			<h3 class="panel-title"><strong>Preencha os campos:</strong></h3>
@@ -26,7 +26,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="col-md-3 col-sm-3">
+	<div class="col-md-3">
 	</div>
 	</div>
 </div>
