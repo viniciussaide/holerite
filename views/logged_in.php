@@ -9,18 +9,25 @@ else {
 	$pagina = "home.php";
 }
 
+
 if ($_SERVER['REQUEST_METHOD']=="POST"){
-	$_SESSION['posts'] = $_POST;
-	parse_str($_SERVER['QUERY_STRING']);
-	$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='$pagina'";
-	$result = mysqli_query($conn, $query);
-	if ($result){
-		if (mysqli_num_rows($result)>=1){
-			header('HTTP/1.1 303 See Other');
-			header ("Location:?pagina=$pagina");
-		}
-		else {
-			echo "Sem permissão!";
+	if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+		$_SESSION['posts'] = $_POST;
+		include("includes/$pagina");
+	}
+	else {
+		$_SESSION['posts'] = $_POST;
+		parse_str($_SERVER['QUERY_STRING']);
+		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='$pagina'";
+		$result = mysqli_query($conn, $query);
+		if ($result){
+			if (mysqli_num_rows($result)>=1){
+				header('HTTP/1.1 303 See Other');
+				header ("Location:?pagina=$pagina");
+			}
+			else {
+				echo "Sem permissão!";
+			}
 		}
 	}
 }
@@ -78,6 +85,7 @@ else{
 		}?>
 		<script src="js/support.js"></script>
 		<script src="js/checkbox_table.js"></script>
+		<script src="js/reload_prioridade_onChange.js"></script>
 		<script>
 		//Muda class do menu atual para ativo
 		$(document).ready(function() {
