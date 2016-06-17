@@ -45,7 +45,9 @@ border-color:#999;
 background-color: #FFFFFF;
 border-radius: 10px;
 }
-
+#form-control-md{ 
+width:70% !important; 
+}
 @media (min-width: 768px) and (max-width: 991px) {
     .navbar-collapse.collapse {
         display: none !important;

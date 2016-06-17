@@ -11,12 +11,21 @@ else {
 
 
 if ($_SERVER['REQUEST_METHOD']=="POST"){
-	if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
-		$_SESSION['posts'] = $_POST;
-		include("includes/$pagina");
+	$_SESSION['posts'] = $_POST;
+ 	if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+		parse_str(parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY), $urlparams);
+		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='".$urlparams['pagina']."'";
+		$result = mysqli_query($conn, $query);
+		if ($result){
+			if (mysqli_num_rows($result)>=1){
+				include("includes/$pagina");
+			}
+			else {
+				echo "Sem permissão!";
+			}
+		}
 	}
 	else {
-		$_SESSION['posts'] = $_POST;
 		parse_str($_SERVER['QUERY_STRING']);
 		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='$pagina'";
 		$result = mysqli_query($conn, $query);

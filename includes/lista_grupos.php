@@ -1,3 +1,55 @@
+<?php
+if (isset($_SESSION['posts']['order'])){
+	$_SESSION['order'] = $_SESSION['posts']['order'];
+	if ($_SESSION['order']=='Desc_descricao'){
+		$order = 'ORDER BY funcao DESC';
+	}
+	elseif ($_SESSION['order']=='Desc_nome_menu'){
+		$order = 'ORDER BY nome_menu DESC';
+	}
+	elseif ($_SESSION['order']=='Desc_pagina_php'){
+		$order = 'ORDER BY pagina_php DESC';
+	}
+	elseif ($_SESSION['order']=='Asc_descricao'){
+		$order = 'ORDER BY funcao ASC';
+	}
+	elseif ($_SESSION['order']=='Asc_nome_menu'){
+		$order = 'ORDER BY nome_menu ASC';
+	}
+	elseif ($_SESSION['order']=='Asc_pagina_php'){
+		$order = 'ORDER BY pagina_php ASC';
+	}
+	else {
+		$order = 'ORDER BY funcao ASC';
+	}
+}
+else {
+	if (!isset($_SESSION['order'])){
+		$_SESSION['order'] = '';
+	}
+	if ($_SESSION['order']=='Desc_descricao'){
+		$order = 'ORDER BY funcao DESC';
+	}
+	elseif ($_SESSION['order']=='Desc_nome_menu'){
+		$order = 'ORDER BY nome_menu DESC';
+	}
+	elseif ($_SESSION['order']=='Desc_pagina_php'){
+		$order = 'ORDER BY pagina_php DESC';
+	}
+	elseif ($_SESSION['order']=='Asc_descricao'){
+		$order = 'ORDER BY funcao ASC';
+	}
+	elseif ($_SESSION['order']=='Asc_nome_menu'){
+		$order = 'ORDER BY nome_menu ASC';
+	}
+	elseif ($_SESSION['order']=='Asc_pagina_php'){
+		$order = 'ORDER BY pagina_php ASC';
+	}
+	else {
+		$order = 'ORDER BY funcao ASC';
+	}
+}
+?>
 <form action="?pagina=gerenciar_grupos.php" method="POST">
 	<div class='well'>
 			<div class="input-group pull-right">
@@ -5,9 +57,9 @@
 			</div>
 			<table class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
 				<thead>
-					<td class="col-md-4"><button class="btn btn-link" type="submit" value="Desc_nome_grupo" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Nome do Grupo</b></button></td>
-					<td class="col-md-4"><button class="btn btn-link" type="submit" value="Desc_funcoes" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Funções Liberadas</b></button></td>
-					<td class="col-md-4"><button class="btn btn-link" type="submit" value="Desc_quantidade" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Quantidade de Usuários</b></button></td>
+					<td class="col-md-4"><button class="btn btn-link" type="button"><b>Nome do Grupo</b></button></td>
+					<td class="col-md-4"><button class="btn btn-link" type="button"><b>Funções Liberadas</b></button></td>
+					<td class="col-md-4"><button class="btn btn-link" type="button"><b>Quantidade de Usuários</b></button></td>
 				</thead>
 			</table>
 		<div class='list-group'>

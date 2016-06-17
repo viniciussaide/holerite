@@ -79,7 +79,6 @@ if (isset($_SESSION['user_type'])){
 		if ($type==1){
 			echo "<div class='hidden-print'>";
 			Kint::dump($_SERVER['REQUEST_METHOD']);
-			Kint::dump( $_COOKIE );
 			Kint::dump( $_POST );
 			Kint::dump( $_SESSION );
 			Kint::dump( $GLOBALS );

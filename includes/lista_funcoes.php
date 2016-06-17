@@ -10,17 +10,17 @@ if (isset($_SESSION['posts']['order'])){
 	elseif ($_SESSION['order']=='Desc_pagina_php'){
 		$order = 'ORDER BY pagina_php DESC';
 	}
-	elseif ($_SESSION['order']=='Desc_descricao'){
+	elseif ($_SESSION['order']=='Asc_descricao'){
 		$order = 'ORDER BY funcao ASC';
 	}
-	elseif ($_SESSION['order']=='Desc_nome_menu'){
+	elseif ($_SESSION['order']=='Asc_nome_menu'){
 		$order = 'ORDER BY nome_menu ASC';
 	}
-	elseif ($_SESSION['order']=='Desc_pagina_php'){
+	elseif ($_SESSION['order']=='Asc_pagina_php'){
 		$order = 'ORDER BY pagina_php ASC';
 	}
 	else {
-		$order = 'ORDER BY id_funcao ASC';
+		$order = 'ORDER BY funcao ASC';
 	}
 }
 else {
@@ -36,17 +36,17 @@ else {
 	elseif ($_SESSION['order']=='Desc_pagina_php'){
 		$order = 'ORDER BY pagina_php DESC';
 	}
-	elseif ($_SESSION['order']=='Desc_descricao'){
+	elseif ($_SESSION['order']=='Asc_descricao'){
 		$order = 'ORDER BY funcao ASC';
 	}
-	elseif ($_SESSION['order']=='Desc_nome_menu'){
+	elseif ($_SESSION['order']=='Asc_nome_menu'){
 		$order = 'ORDER BY nome_menu ASC';
 	}
-	elseif ($_SESSION['order']=='Desc_pagina_php'){
+	elseif ($_SESSION['order']=='Asc_pagina_php'){
 		$order = 'ORDER BY pagina_php ASC';
 	}
 	else {
-		$order = 'ORDER BY id_funcao ASC';
+		$order = 'ORDER BY funcao ASC';
 	}
 }
 ?>
@@ -57,33 +57,30 @@ else {
 		</div>
 		<table class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
 			<thead>
-				<td class="col-xs-4"><button class="btn btn-link" type="submit" value="Desc_descricao" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Descrição</b></button></td>
-				<td class="col-xs-4"><button class="btn btn-link" type="submit" value="Desc_nome_menu" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Nome do Menu</b></button></td>
-				<td class="col-xs-4"><button class="btn btn-link" type="submit" value="Desc_pagina_php" name="order"><b><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Página PHP</b></button></td>
 				<?php
 				if (!isset($_SESSION['order'])){
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button><td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+					echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_descricao' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Descrição</b></button></td>";
+					echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_nome_menu' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome do Menu</b></button></td>";
+					echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_pagina_php' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Página PHP</b></button></td>";
 				}
 				else {
-					if ($_SESSION['order']=='Desc_mat'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_mat' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Matrícula</b></button></td>";
+					if ($_SESSION['order']=='Desc_descricao'){
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Asc_descricao' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Descrição</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_descricao' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Descrição</b></button></td>";
 					}
-					if ($_SESSION['order']=='Desc_nome'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_nome' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome</b></button></td>";
-					}
-					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button></td>";
-					}
-					if ($_SESSION['order']=='Desc_data'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_data' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+					if ($_SESSION['order']=='Desc_nome_menu'){
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Asc_nome_menu' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome do Menu</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_nome_menu' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome do Menu</b></button></td>";
+					}
+					if ($_SESSION['order']=='Desc_pagina_php'){
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Asc_pagina_php' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Página PHP</b></button></td>";
+					}
+					else {
+						echo "<td class='col-xs-4'><button class='btn btn-link' type='submit' value='Desc_pagina_php' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Página PHP</b></button></td>";
 					}
 				}
 				?>

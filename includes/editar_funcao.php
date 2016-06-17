@@ -91,10 +91,9 @@
 							}
 						}
 						?>
-					</label>
 				</div>
-			  </div>
-			  <div class="col-md-6">
+			</div>
+			<div class="col-md-6">
 				<div class="form-group">
 					<label for="pagina_php">Página PHP: </label>
 					<input type="text" class="form-control" name="pagina_php" value='<?php echo $pagina_php;?>'>
@@ -123,8 +122,8 @@
 				</div>
 				<label>Prioridade: </label>
 				<div class="form-group" id="priority" >
-					<div class="form-group col-md-10" id="select_priority">
-						<select class="form-control" name="prioridades[]" id="prioridades" size='11' multiple>
+					<div style="width:90%" class="form-group pull-left" id="select_priority">
+						<select style="height:200px" class="form-control" name="prioridades[]" id="prioridades" size='11' multiple>
 							<?php
 								if (($tipo_menu=="Lateral Simples")OR($tipo_menu=="Lateral Dropdown")){
 									$query = "SELECT * FROM funcao WHERE tipo_menu LIKE '%lateral%' ORDER BY prioridade";
@@ -152,9 +151,17 @@
 							?>
 						</select>
 					</div>
-					<div class="form-group col-md-2">
-						<div><button class="btn btn-default btn-block" type="button" id="move-up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button></div>
-						<div><button class="btn btn-default btn-block" type="button" id="move-down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button></div>
+					<div style="width:10% height:10px" class="form-group pull-right">
+						<div>
+							<button style="height:100px" class="btn btn-default" type="button" id="move-up">
+								<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+							</button>
+						</div>    
+						<div>
+							<button style="height:100px" class="btn btn-default" type="button" id="move-down">
+								<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
