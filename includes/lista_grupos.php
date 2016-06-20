@@ -75,7 +75,6 @@ else {
 					$type = $row['type'];
 					$query = "SELECT * FROM relacao_type_funcao JOIN funcao ON fk_id_funcao=id_funcao WHERE fk_id_user_type='$id_user_type'";
 					$result_2 = mysqli_query($conn, $query);
-			//Kint::dump( $result_2 );
 					$funcoes = '';
 					if ($result_2){
 						while($row_2 = mysqli_fetch_array($result_2, MYSQL_ASSOC)) {
@@ -86,7 +85,7 @@ else {
 					$result_2 = mysqli_query($conn, $query);
 					$row_2 = mysqli_fetch_array($result_2, MYSQL_NUM);
 					$quantidade_users = $row_2[0];
-					echo "<button type='submit' class='list-group-item' value='$id_user_type' name='user_type'><div class='col-xs-4'>$type</div><div class='col-xs-4'>$funcoes</div><div class='col-xs-4'><span class='badge'>$quantidade_users</span></div></button>";
+					echo "<button type='submit' class='list-group-item' value='$id_user_type' name='seleciona_grupo'><div class='col-xs-4'>$type</div><div class='col-xs-4'>$funcoes</div><div class='col-xs-4'><span class='badge'>$quantidade_users</span></div></button>";
 				}
 			}
 		?>

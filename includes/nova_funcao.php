@@ -90,17 +90,17 @@
 					</select>
 				</div>
 				<div style="width:10% height:10px" class="form-group pull-right">
-                                                <div>
-                                                    <button style="height:100px" class="btn btn-default" type="button" id="move-up">
-                                                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                                                    </button>
-                                                </div>    
-                                                <div>
-                                                    <button style="height:100px" class="btn btn-default" type="button" id="move-down">
-                                                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                                                    </button>
-                                                </div>
-                                </div>
+					<div>
+						<button style="height:100px" class="btn btn-default" type="button" id="move-up">
+							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+						</button>
+					</div>    
+					<div>
+						<button style="height:100px" class="btn btn-default" type="button" id="move-down">
+							<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="form-group pull-right">
 				<button type="submit" class="btn btn-success" name="salvar_nova_funcao" id="salvar_nova_funcao">Salvar</button>

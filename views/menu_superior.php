@@ -12,7 +12,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 		<?php	
-			$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao']." ORDER BY prioridade";
+			$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao']." GROUP BY id_funcao ORDER BY prioridade";
 			$result = mysqli_query($conn, $query);
 			if ($result){
 				while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
@@ -25,7 +25,7 @@
 					}
 					elseif ($tipo_menu=='Superior Dropdown'){
 						echo "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><b>".$nome_menu."</b><span class='caret'></span></a><ul class='dropdown-menu dropdown-menu-right'>";
-						$query = "SELECT * FROM funcao WHERE tipo_menu=".$id_funcao." ORDER BY prioridade";
+						$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON fk_id_funcao=id_funcao WHERE tipo_menu=".$id_funcao." AND (".$_SESSION['query_restricao'].") GROUP BY id_funcao ORDER BY prioridade";
 						$result_2 = mysqli_query($conn, $query);
 						while($row_2 = mysqli_fetch_array($result_2, MYSQL_ASSOC)) {
 							$pagina_php = $row_2['pagina_php'];
@@ -46,7 +46,7 @@
 		  <span class="caret"></span></a>
 			<ul class="dropdown-menu dropdown-menu-right">
 			<?php
-			$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao']." ORDER BY prioridade";
+			$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE ".$_SESSION['query_restricao']." GROUP BY id_funcao ORDER BY prioridade";
 			$result = mysqli_query($conn, $query);
 			if ($result){
 				while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {

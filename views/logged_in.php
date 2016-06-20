@@ -113,6 +113,13 @@ else{
 		$('#alterar_funcao').click(function() {
 			$('#prioridades option').prop('selected', true);
 		});
+		//Selecionar todos itens da lista permissao_usuário
+		$('#alterar_grupo').click(function() {
+			$('#select1 option').prop('selected', true);
+		});
+		$('#salvar_novo_grupo').click(function() {
+			$('#select1 option').prop('selected', true);
+		});
 		
 		//Mover para cima ou para baixo para prioridade
 		$(document).ready(function() {
@@ -136,6 +143,15 @@ else{
 			$('#prioridades').focus().blur();
 		}
 		</script>
+		<script>
+$('#select1').click(function () {
+     return !$('#select1 option:selected').remove().appendTo('#select2');
+});
+
+$('#select2').click(function () {
+     return !$('#select2 option:selected').remove().appendTo('#select1');
+ });
+</script>
 	  </body>
 	</html><?php
 }

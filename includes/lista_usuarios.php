@@ -1,5 +1,4 @@
 <?php
-
 //Ordenação por coluna
 if (isset($_SESSION['posts']['order'])){
 	$_SESSION['order'] = $_SESSION['posts']['order'];
@@ -21,6 +20,12 @@ if (isset($_SESSION['posts']['order'])){
 	elseif ($_SESSION['order']=='Desc_data'){
 		$order = 'ORDER BY dataCadastro DESC, matricula ASC';
 	}
+	elseif ($_SESSION['order']=='Asc_setor'){
+		$order = 'ORDER BY setor ASC, matricula ASC';
+	}
+	elseif ($_SESSION['order']=='Desc_setor'){
+		$order = 'ORDER BY setor DESC, matricula ASC';
+	}
 	else {
 		$order = 'ORDER BY matricula ASC';
 	}
@@ -41,6 +46,12 @@ else {
 	elseif ($_SESSION['order']=='Asc_nome'){
 		$order = 'ORDER BY nome ASC';
 	}
+	elseif ($_SESSION['order']=='Asc_setor'){
+		$order = 'ORDER BY setor ASC, matricula ASC';
+	}
+	elseif ($_SESSION['order']=='Desc_setor'){
+		$order = 'ORDER BY setor DESC, matricula ASC';
+	}
 	elseif ($_SESSION['order']=='Asc_data'){
 		$order = 'ORDER BY dataCadastro ASC, matricula ASC';
 	}
@@ -52,7 +63,6 @@ else {
 	}
 }
 //Fim ordenação por coluna
-
 
 //Seleção quantidade de itens a mostrar
 if (isset($_SESSION['posts']['numitems'])){
@@ -89,10 +99,10 @@ else {
 
 if (isset($_SESSION['posts']['txt_busca'])){
 	$_SESSION['txt_busca'] = $_SESSION['posts']['txt_busca'];
-	$query = "SELECT count(*) FROM users WHERE nome LIKE '%".$_SESSION['posts']['txt_busca']."%' OR matricula LIKE '%".$_SESSION['posts']['txt_busca']."%';";
+	$query = "SELECT count(*) FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['posts']['txt_busca']."%' OR matricula LIKE '%".$_SESSION['posts']['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
 }
 elseif (isset($_SESSION['txt_busca'])){
-	$query = "SELECT count(*) FROM users WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%';";
+	$query = "SELECT count(*) FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
 }
 else {
 	$query = "SELECT count(*) FROM users;";
@@ -106,7 +116,7 @@ if (!isset($paginas)){
 ?>
 
 
-<form method=POST action="?pagina=relatorio.php">
+<form method="POST" action="?pagina=gerenciar_usuarios.php">
 <?php include "includes/paginacao.php";?>
 	<div class="well clearfix">
 		<div class="row">
@@ -135,7 +145,7 @@ if (!isset($paginas)){
 		</div>
 		</p>
 		<table class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
-			<thead align=center>
+			<thead align="center">
 			<td>
 				<input class="btn btn-link" type='checkbox' id='select_all'>
 			</td>
@@ -144,6 +154,7 @@ if (!isset($paginas)){
 					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
 					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button><td>";
 					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
 				}
 				else {
 					if ($_SESSION['order']=='Desc_mat'){
@@ -164,27 +175,34 @@ if (!isset($paginas)){
 					else {
 						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
 					}
+					if ($_SESSION['order']=='Desc_setor'){
+						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_setor' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> VR</b></button></td>";
+					}
+					else {
+						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
+					}
 				}
 				?>
 			</thead>
 		</table>
 		<table id='lista_usuario' class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
 			<?php
-			if (isset($_POST['txt_busca'])){
-				$query = "SELECT matricula, nome, dataCadastro FROM users WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
+			if (isset($_SESSION['posts']['txt_busca'])){
+				$query = "SELECT matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
 			}
 			elseif (isset($_SESSION['txt_busca'])){
-				$query = "SELECT  matricula, nome, dataCadastro FROM users WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
+				$query = "SELECT  matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
 			}
 			else {
-				$query = "SELECT matricula, nome, dataCadastro FROM users $order LIMIT $inicio, $fim";
+				$query = "SELECT matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor $order LIMIT $inicio, $fim";
 			}
 			$result = mysqli_query($conn, $query);
 			while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 				$matricula = $row["matricula"];
 				$nome = $row["nome"];
 				$dataCadastro = date_format(new DateTime($row["dataCadastro"]),'d/m/Y');
-				echo "<tr align=center><td><input name='matriculas[]' type='checkbox' value=$matricula></td><td>$matricula</td><td>$nome</td><td>$dataCadastro</td></tr>";
+				$setor = $row["setor"];
+				echo "<tr align=center><td><input name='matriculas[]' type='checkbox' value=$matricula></td><td>$matricula</td><td><button type='submit' class='btn btn-link' style='padding: 0px' name='seleciona_usuario' value=$matricula>$nome</button></td><td>$dataCadastro</td><td>$setor</td></tr>";
 			}
 			?>
 		</table>
