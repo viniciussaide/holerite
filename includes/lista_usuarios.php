@@ -99,10 +99,10 @@ else {
 
 if (isset($_SESSION['posts']['txt_busca'])){
 	$_SESSION['txt_busca'] = $_SESSION['posts']['txt_busca'];
-	$query = "SELECT count(*) FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['posts']['txt_busca']."%' OR matricula LIKE '%".$_SESSION['posts']['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
+	$query = "SELECT count(*) FROM users LEFT JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
 }
 elseif (isset($_SESSION['txt_busca'])){
-	$query = "SELECT count(*) FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
+	$query = "SELECT count(*) FROM users LEFT JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%';";
 }
 else {
 	$query = "SELECT count(*) FROM users;";
@@ -116,7 +116,7 @@ if (!isset($paginas)){
 ?>
 
 
-<form method="POST" action="?pagina=gerenciar_usuarios.php">
+<form method="POST" action="?pagina=<?php echo $gerenciar;?>">
 <?php include "includes/paginacao.php";?>
 	<div class="well clearfix">
 		<div class="row">
@@ -124,10 +124,10 @@ if (!isset($paginas)){
 			  <div class="input-group">
 			  <?php
 				if (isset($_SESSION['txt_busca'])){
-					echo "<input type='text' name='txt_busca' class='form-control' placeholder='Nome ou matrícula' value=".$_SESSION['txt_busca']."></input>";
+					echo "<input type='text' name='txt_busca' class='form-control' placeholder='Nome, matrícula ou VR' value='$_SESSION[txt_busca]' tabindex='-1'></input>";
 				}
 				else {
-					echo "<input type='text' name='txt_busca' class='form-control' placeholder='Nome ou matrícula'></input>";
+					echo "<input type='text' name='txt_busca' class='form-control' placeholder='Nome, matrícula ou VR' tabindex='-1'></input>";
 				}
 			  ?>
 			  
@@ -188,13 +188,13 @@ if (!isset($paginas)){
 		<table id='lista_usuario' class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
 			<?php
 			if (isset($_SESSION['posts']['txt_busca'])){
-				$query = "SELECT matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
+				$query = "SELECT matricula, nome, dataCadastro, setor FROM users LEFT JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
 			}
 			elseif (isset($_SESSION['txt_busca'])){
-				$query = "SELECT  matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
+				$query = "SELECT  matricula, nome, dataCadastro, setor FROM users LEFT JOIN setor ON id_setor=fk_id_setor WHERE nome LIKE '%".$_SESSION['txt_busca']."%' OR matricula LIKE '%".$_SESSION['txt_busca']."%' OR setor LIKE '%".$_SESSION['txt_busca']."%' $order LIMIT $inicio, $fim";
 			}
 			else {
-				$query = "SELECT matricula, nome, dataCadastro, setor FROM users JOIN setor ON id_setor=fk_id_setor $order LIMIT $inicio, $fim";
+				$query = "SELECT matricula, nome, dataCadastro, setor FROM users LEFT JOIN setor ON id_setor=fk_id_setor $order LIMIT $inicio, $fim";
 			}
 			$result = mysqli_query($conn, $query);
 			while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {

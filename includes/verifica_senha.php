@@ -11,7 +11,7 @@
 			?><p>
 			<div class="alert alert-danger" role="alert">
 			<a href='' class=close data-dismiss=alert aria-label=close>&times;</a>
-				Prezado(a) <strong><?php echo $row['nome']; ?></strong> verificamos que está utilizando a <b>senha padrão</b> do sistema.<br> Como precaução e para a segurança de suas informações, recomendamos a alteração da mesma clicando <a href="?pagina=form_troca_senha.php"><?php echo "aqui"; ?></a> ou em "Alterar Senha" no canto superior direito do seu navegador.</div>
+				Prezado(a) <strong><?php echo $row['nome']; ?></strong> verificamos que está utilizando a <b>senha padrão</b> do sistema.<br> Como precaução e para a segurança de suas informações, recomendamos a alteração da mesma clicando <a href="?pagina=troca_senha.php"><?php echo "aqui"; ?></a> ou em "Alterar Senha" no canto superior direito do seu navegador.</div>
              </p>
 			<?php
 		}

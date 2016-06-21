@@ -11,7 +11,7 @@ if($result){
 	$cargo = $row['cargo'];
 	$email = $row['email'];
 ?>
-<form method="POST" action="?pagina=<?php echo $gerenciar;?>">
+<form method="POST" action="?pagina=gerenciar_usuarios.php">
 	<input type="hidden" value='<?php echo $matricula;?>' name="matricula" id="matricula">
 	<!--Modal resetar Senha-->
 	<div class="modal fade" id="modal_reset_senha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -51,6 +51,25 @@ if($result){
 	  </div>
 	</div>
 	<!--Fim gerar nova chave-->
+	<!--Modal apagar usuario-->
+	<div class="modal fade" id="modal_apagar_usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+		<div class="modal-content panel panel-danger">
+		  <div class="modal-header panel-heading">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel" align="center"><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span><strong> Apagar Usuário</strong></h4>
+		  </div>
+		  <div class="modal-body panel-body">
+			<div align="center">
+			<p>Quer realmente apagar o usuário?</p>
+			<button type="submit" class="btn btn-danger" name="apagar_usuario"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar Usuário</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!--Fim apagar usuario-->
 	<div class="panel panel-info">
 		<div class="panel-heading" style='text-align:center;'>
 			<h3 class="panel-title"><strong>Colaborador: <?php echo $nome;?></strong></h3>
@@ -69,6 +88,9 @@ if($result){
 	<div class="form-inline pull-right">
 		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal_reset_senha">Resetar Senha</button>
 		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_gerar_chave">Gerar Nova Chave de Segurança</button>
+	</div>
+	<div class="pull-left">
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_apagar_usuario"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar Usuário</button>
 	</div>
 </form>
 <?php

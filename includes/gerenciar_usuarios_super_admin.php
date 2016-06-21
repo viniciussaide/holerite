@@ -1,7 +1,7 @@
 <?php
-$gerenciar = "gerenciar_usuarios.php";
+$gerenciar = "gerenciar_usuarios_super_admin.php";
 if (isset($_SESSION['posts']['seleciona_usuario'])){
-	include "includes/editar_usuario.php";
+	include "includes/editar_usuario_super_admin.php";
 }
 elseif (isset($_SESSION['posts']['relatorio'])){
 	include ("includes/relatorio_chaves.php");
