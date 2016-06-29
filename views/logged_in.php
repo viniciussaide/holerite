@@ -57,7 +57,7 @@ else{
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/jumbotron.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.min.css" rel="stylesheet">
-		
+		<link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
@@ -95,6 +95,15 @@ else{
 		<script src="js/support.js"></script>
 		<script src="js/checkbox_table.js"></script>
 		<script src="js/reload_prioridade_onChange.js"></script>
+		<script src="jquery-ui/jquery-ui.js"></script>
+		<script>
+		  $(function() {
+			$( "#data_inicio" ).datepicker();
+		  });
+		  $(function() {
+			$( "#data_fim" ).datepicker();
+		  });
+		  </script>
 		<script>
 		//Muda class do menu atual para ativo
 		$(document).ready(function() {
@@ -118,6 +127,12 @@ else{
 			$('#select1 option').prop('selected', true);
 		});
 		$('#salvar_novo_grupo').click(function() {
+			$('#select1 option').prop('selected', true);
+		});
+		$('#alterar_mensagem').click(function() {
+			$('#select1 option').prop('selected', true);
+		});
+		$('#salvar_nova_mensagem').click(function() {
 			$('#select1 option').prop('selected', true);
 		});
 		

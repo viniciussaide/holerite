@@ -20,7 +20,7 @@
 					echo "<li><a href='?pagina=".$pagina_php."'><b>".$nome_menu."</b></a></li>";
 				}
 				elseif ($tipo_menu=='Lateral Dropdown'){
-					echo "<li class='nav-header'><a href=".$pagina_php." data-toggle='collapse' data-target='#".$id_funcao."'><b>".$nome_menu."</b> <span class='glyphicon glyphicon-chevron-down'></span></a><ul class='nav nav-stacked collapse in' id='".$id_funcao."'>";
+					echo "<li class='nav-header'><a href=".$pagina_php." data-toggle='collapse' data-target='#".$id_funcao."'><b>".$nome_menu." </b><span class='glyphicon glyphicon-chevron-down'></span></a><ul class='nav nav-stacked collapse in' id='".$id_funcao."'>";
 					$query = "SELECT * FROM funcao JOIN relacao_type_funcao 
 								ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao 
 								WHERE (".$_SESSION['query_restricao'].") AND  tipo_menu=".$id_funcao." 

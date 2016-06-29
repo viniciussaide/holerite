@@ -151,9 +151,9 @@ if (!isset($paginas)){
 			</td>
 				<?php
 				if (!isset($_SESSION['order'])){
-					echo "
-                                            <td class='pull-left'>
-                                                <button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'>
+					echo "<div class='row'>
+                                            <div class='col-md-7'>
+                                                <button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order' style='padding-left: 0px'>
                                                     <b>
                                                         <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
                                                         </span>
@@ -161,34 +161,34 @@ if (!isset($paginas)){
                                                     </b>
                                                 </button>
                                             </td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button><td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
+					echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order' style='width: 166px;'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button><td>";
+					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true' style='text-align:left'></span> Data de Cadastro</b></button></td>";
+					echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
 				}
 				else {
 					if ($_SESSION['order']=='Desc_mat'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_mat' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Matrícula</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Asc_mat' name='order' style='padding-left: 0px'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Matrícula</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order' style='padding-left: 0px'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
 					}
 					if ($_SESSION['order']=='Desc_nome'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_nome' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome</b></button></td>";
+						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_nome' name='order' style='width: 166px;'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button></td>";
+						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order' style='width: 166px;'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button></td>";
 					}
 					if ($_SESSION['order']=='Desc_data'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_data' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Asc_data' name='order' style='text-align:left'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order' style='text-align:left'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
 					}
 					if ($_SESSION['order']=='Desc_setor'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_setor' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> VR</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Asc_setor' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> VR</b></button></td>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
+						echo "<td class='pull-left'><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
 					}
 				}
 				?>

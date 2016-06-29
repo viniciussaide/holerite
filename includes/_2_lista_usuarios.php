@@ -144,56 +144,95 @@ if (!isset($paginas)){
 		  </div>
 		</div>
 		</p>
-		<table class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
-			<thead align="center">
-			<td>
-				<input class="btn btn-link" type='checkbox' id='select_all'>
-			</td>
+		
+                <div class='row' style="background-color: #FFFFFF;border-radius: 10px;">
+			
+                            <div class="col-md-1">
+				<input class="btn btn-link" type='checkbox' id='select_all' style='margin-left:20px'>
+                            </div>
 				<?php
 				if (!isset($_SESSION['order'])){
 					echo "
-                                            <td class='pull-left'>
-                                                <button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'>
-                                                    <b>
-                                                        <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
-                                                        </span>
-                                                        Matrícula
-                                                    </b>
-                                                </button>
-                                            </td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button><td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
-					echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
+                                                <div class='col-md-2'>
+                                                    
+                                                        <button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'>
+                                                            <b>
+                                                                <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
+                                                                </span>
+                                                                Matrícula
+                                                            </b>
+                                                        </button>
+                                                    
+                                                </div>";
+					echo "
+                                                <div class='col-md-3'>
+                                                    
+                                                        <button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'>
+                                                            <b>
+                                                                <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
+                                                                </span>
+                                                                Nome
+                                                            </b>
+                                                        </button>
+                                                    
+                                                </div>";
+					echo "
+                                                <div class='col-md-3'>
+                                                    
+                                                        <button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'>
+                                                            <b>
+                                                                <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
+                                                                </span>
+                                                                Data de Cadastro
+                                                            </b>
+                                                        </button>
+                                                    
+                                                </div>";
+					echo "
+                                                <div class='col-md-2'>
+                                                    
+                                                        <button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'>
+                                                            <b>
+                                                                <span class='glyphicon glyphicon-menu-down' aria-hidden='true'>
+                                                                </span>
+                                                                VR
+                                                            </b>
+                                                        </button>
+                                                    
+                                                </div>
+                                            ";
 				}
 				else {
+                                    
 					if ($_SESSION['order']=='Desc_mat'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_mat' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Matrícula</b></button></td>";
+						echo "<div class='col-md-2'><button class='btn btn-link form-control' type='submit' value='Asc_mat' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Matrícula</b></button></div>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></td>";
+						echo "<div class='col-md-2'><button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Matrícula</b></button></div>";
 					}
 					if ($_SESSION['order']=='Desc_nome'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_nome' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome</b></button></td>";
+						echo "<div class='col-md-3'><button class='btn btn-link form-control' type='submit' value='Asc_nome' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Nome</b></button></div>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button></td>";
+						echo "<div class='col-md-3'><button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Nome</b></button></div>";
 					}
 					if ($_SESSION['order']=='Desc_data'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_data' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+						echo "<div class='col-md-3'><button class='btn btn-link form-control' type='submit' value='Asc_data' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> Data de Cadastro</b></button></div>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></td>";
+						echo "<div class='col-md-3'><button class='btn btn-link form-control' type='submit' value='Desc_data' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Data de Cadastro</b></button></div>";
 					}
 					if ($_SESSION['order']=='Desc_setor'){
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Asc_setor' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> VR</b></button></td>";
+						echo "<div class='col-md-2'><button class='btn btn-link form-control' type='submit' value='Asc_setor' name='order'><b><span class='glyphicon glyphicon-menu-up' aria-hidden='true'></span> VR</b></button></div>";
 					}
 					else {
-						echo "<td><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></td>";
+						echo "<div class='col-md-2'><button class='btn btn-link form-control' type='submit' value='Desc_setor' name='order'><b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> VR</b></button></div>";
 					}
+                                    
 				}
 				?>
-			</thead>
-		</table>
+			
+		</div>
 		<table id='lista_usuario' class="table table-hover" style="background-color: #FFFFFF;border-radius: 10px;">
 			<?php
 			if (isset($_SESSION['posts']['txt_busca'])){
