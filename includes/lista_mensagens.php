@@ -8,12 +8,12 @@
 		<table class="table" style="background-color: #FFFFFF;border-radius: 10px;">
 			<thead align="center">
 				<td class="col-xs-4">
-					<button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order'>
+					<button class='btn btn-link form-control' type='submit' value='Desc_mat' name='order' style="text-align:left">
 						<b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Título</b>
 					</button>
 				</td>
 				<td class="col-xs-8">
-					<button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order'>
+					<button class='btn btn-link form-control' type='submit' value='Desc_nome' name='order' style="text-align:left">
 						<b><span class='glyphicon glyphicon-menu-down' aria-hidden='true'></span> Descrição</b>
 					</button>
 				</td>
@@ -31,13 +31,15 @@
 						$descricao = $row['descricao'];
 						?>
 						<button type="submit" name="seleciona_mensagem" class="list-group-item" value="<?php echo $id_mensagem;?>">
-							<div class="col-md-4">
-								<b><?php echo $titulo;?></b>
+							
+							<div class="col-xs-4">
+								<p align="justify"><?php echo $titulo;?></p>
 							</div>
-							<div class="col-md-8">
+							<div class="col-xs-8">
 								<p align="justify">
 								<?php echo $descricao;?>
 								</p>
+							
 							</div>
 						</button>
 						<?php

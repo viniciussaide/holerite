@@ -62,3 +62,52 @@ width:70% !important;
         float:none;
     }
 }
+.text-newinfo{ 
+color:#4ca391
+ }  
+a.text-newinfo:focus,a.text-newinfo:hover{ 
+color:#397B6E
+ }  
+.bg-newinfo{ 
+color:#fff; 
+background-color:#4ca391
+ }  
+a.bg-newinfo:focus,a.bg-newinfo:hover{ 
+background-color:#397B6E
+ } 
+.btn-newinfo{ 
+color:#fff; 
+background-color:#4ca391; 
+border-color:#397B6E
+ }  
+.btn-newinfo.focus,.btn-newinfo:focus{ 
+color:#fff; 
+background-color:#397B6E; 
+border-color:#122b40
+ }  
+.btn-newinfo:hover{ 
+color:#fff; 
+background-color:#397B6E; 
+border-color:#397B6E
+ }  
+.btn-newinfo.active,.btn-newinfo:active,.open>.dropdown-toggle.btn-newinfo{ 
+color:#fff; 
+background-color:#397B6E; 
+border-color:#397B6E
+ }  
+.btn-newinfo.active.focus,.btn-newinfo.active:focus,.btn-newinfo.active:hover,.btn-newinfo:active.focus,.btn-newinfo:active:focus,.btn-newinfo:active:hover,.open>.dropdown-toggle.btn-newinfo.focus,.open>.dropdown-toggle.btn-newinfo:focus,.open>.dropdown-toggle.btn-newinfo:hover{ 
+color:#fff; 
+background-color:#204d74; 
+border-color:#397B6E
+ }  
+.btn-newinfo.active,.btn-newinfo:active,.open>.dropdown-toggle.btn-newinfo{ 
+background-image:none
+ }  
+.btn-newinfo.disabled.focus,.btn-newinfo.disabled:focus,.btn-newinfo.disabled:hover,.btn-newinfo[disabled].focus,.btn-newinfo[disabled]:focus,.btn-newinfo[disabled]:hover,fieldset[disabled] .btn-newinfo.focus,fieldset[disabled] .btn-newinfo:focus,fieldset[disabled] .btn-newinfo:hover{ 
+background-color:#4ca391; 
+border-color:#397B6E
+ }  
+.btn-newinfo .badge{ 
+color:#4ca391; 
+background-color:#fff
+ } 

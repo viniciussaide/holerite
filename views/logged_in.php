@@ -9,10 +9,12 @@ else {
 	$pagina = "home.php";
 }
 
-
 if ($_SERVER['REQUEST_METHOD']=="POST"){
 	$_SESSION['posts'] = $_POST;
- 	if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+	if (isset($_FILES)AND (sizeof($_FILES)>=1)){
+		include("includes/upload.php");
+	}
+ 	elseif( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
 		parse_str(parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY), $urlparams);
 		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='".$urlparams['pagina']."'";
 		$result = mysqli_query($conn, $query);
@@ -44,7 +46,7 @@ else{
 ?>
 	<!DOCTYPE html>
 	<html lang="pt-br">
-	  <head class=hidden-print>
+	  <head class="hidden-print">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +77,10 @@ else{
 			<img class="pull-right" src="imgs/holerite.png" width="80%">
 		</div>
 		<div class="container-fluid">
-		<?php include "views/restricao_menu_lateral.php"; ?>
+		<?php  
+			//echo $_SESSION['query_restricao'] . "</br>" . $_SESSION['tempo_sessao'] . "</br>";
+			include "views/restricao_menu_lateral.php";
+		?>
 		</div>	
 		<!-- /container -->
 		<?php include "views/footer.php"; ?>
@@ -157,16 +162,17 @@ else{
 			});
 			$('#prioridades').focus().blur();
 		}
+	
 		</script>
 		<script>
-$('#select1').click(function () {
-     return !$('#select1 option:selected').remove().appendTo('#select2');
-});
+			$('#select1').click(function () {
+				 return !$('#select1 option:selected').remove().appendTo('#select2');
+			});
 
-$('#select2').click(function () {
-     return !$('#select2 option:selected').remove().appendTo('#select1');
- });
-</script>
+			$('#select2').click(function () {
+				 return !$('#select2 option:selected').remove().appendTo('#select1');
+			 });
+		</script>
 	  </body>
 	</html><?php
 }

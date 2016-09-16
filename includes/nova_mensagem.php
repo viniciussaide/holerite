@@ -4,23 +4,23 @@
 		<div class="well">
 			<div class="form-group">
 				<label>Título</label>
-				<input type="text" class="form-control" name="titulo" placeholder="Título"></input>
+				<input type="text" class="form-control" name="titulo" placeholder="Título" required></input>
 			</div>
 			<div class="form-group">
 				<label>Descrição</label>
-				<textarea class="form-control" name="descricao" placeholder="Descrição" rows="3" maxlength="300" style="resize: none;"></textarea>
+				<textarea class="form-control" name="descricao" placeholder="Descrição" rows="3" maxlength="300" style="resize: none;" required></textarea>
 			</div>
 			<div class="form-group">
 				<label>Mensagem</label>
-				<textarea class="form-control" name="mensagem" placeholder="Mensagem" rows="5" maxlength="2500" style="resize: none;"></textarea>
+				<textarea class="form-control" name="mensagem" placeholder="Mensagem" rows="5" maxlength="2500" style="resize: none;" required></textarea>
 			</div>
 			<div class="form-group">
-				<label>Data Início: </label><input class="form-control" type="text" name="data_inicio" id="data_inicio" value="">
+				<label>Data Início: </label><input class="form-control" type="text" name="data_inicio" id="data_inicio" value="" required>
 			</div>
 			<div class="form-group">
-				<label>Data Fim: </label><input class="form-control" type="text" name="data_fim" id="data_fim" value="">
+				<label>Data Fim: </label><input class="form-control" type="text" name="data_fim" id="data_fim" value="" required>
 			</div>
-				<label><input type='checkbox' name='tela_inicial'> Mensagem na Tela Inicial</label>
+				<!--<label><input type='checkbox' name='tela_inicial'> Mensagem na Tela Inicial</label>-->
 		</div>
 	</div>
 	<div class="well col-md-8">
@@ -32,12 +32,12 @@
 				while($row = mysqli_fetch_array($result, MYSQL_ASSOC)){
 					$type = $row['type'];
 					$id_user_type = $row['id_user_type'];
-					if($row['id_user_type']<>'2') {
+					if(($id_user_type<>'1')AND($id_user_type<>'2')) {
 						echo "<div class='checkbox'><label><input type='checkbox' name='permissao[]' value='$id_user_type' checked> $type</label></div>";
 					}
 				}
 				?>
-			<p align="center"><label>Usuários</label></p>
+			<h3 align="center"><span class="label label-info">Usuários</span></h3>
 			<div class="col-md-6 form-group">
 				<label>Mostrar Mensagem para:</label>
 				<select multiple id="select1" size='20' class="form-control" name="permissao_usuarios[]">

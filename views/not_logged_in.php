@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head class=hidden-print>
+  <head class="hidden-print">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,14 +50,14 @@
 		if ($login->errors) {
 			foreach ($login->errors as $error) {?>
 			<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog " role="document" style="width:280px;margin-top:-210px;margin-left:-140px;">
+			  <div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content panel panel-danger">
 				  <div class="modal-header panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel" align=center><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span><strong> Problema no login!</strong></h4>
+					<h4 class="modal-title" id="myModalLabel" align="center"><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span><strong> Problema no login!</strong></h4>
 				  </div>
 				  <div class="modal-body panel-body">
-					<div align=center><?php echo "$error";?></div>
+					<div align="center"><?php echo "$error";?></div>
 				  </div>
 				</div>
 			  </div>
@@ -68,32 +68,32 @@
 			foreach ($login->messages as $message) {
 				if ($message=='logout'){?>
 					<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					  <div class="modal-dialog" role="document" style="width:280px;margin-top:-210px;margin-left:-140px;">
+					  <div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content panel panel-success">
 						  <div class="modal-header panel-heading">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel" align=center><strong>Logout!</strong></h4>
+							<h4 class="modal-title" id="myModalLabel" align="center"><strong>Logout!</strong></h4>
 						  </div>
 						  <div class="modal-body">
 							<div>Sua sessão foi finalizada com sucesso!</div>
 						  </div>
 						  <div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">OK</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">OK</button>
 						  </div>
 						</div>
 					  </div>
 					</div><?php
 				}
-				else{?>
+				elseif ($message<>''){?>
 					<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					  <div class="modal-dialog " role="document" style="width:280px;margin-top:-210px;margin-left:-140px;">
+					  <div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content panel panel-info">
 						  <div class="modal-header panel-heading">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel" align=center><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span><strong> Fique atento!</strong></h4>
+							<h4 class="modal-title" id="myModalLabel" align="center"><strong><?php echo $login->titulo_mensagem;?></strong></h4>
 						  </div>
 						  <div class="modal-body panel-body">
-							<div align=center><?php echo "$message";?></div>
+							<div align='justify'><?php echo "$message";?></div>
 						  </div>
 						</div>
 					  </div>
@@ -105,14 +105,13 @@
 	?><!--Fim Modal Errors-->
 			<!-- Modal Login -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog " role="document" style="width:300px;margin-top:-210px;margin-left:-150px;">
-				
-				<div class="modal-content" style="background-color:#DFF0D8;">
+			  <div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content" style="background-color:#DFF0D8;color: #3c763d;">
 				  <div class="modal-header ">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel" align=center>Login</h4>
+					<h4 class="modal-title" id="myModalLabel" align="center"><b>Login</b></h4>
 				  </div>
-				  <div class="modal-body">
+				  <div class="modal-body clearfix">
 					<form method="post" action="index.php" name="loginform">
 						<div class="form-group">
 							<div class="input-group">
@@ -132,19 +131,13 @@
 								<input id="password" type="password" maxlength="4" class="form-control" name="uniqueCode" placeholder="Chave de Segurança" required>                                        
 							</div>
 						</div>
-				  </div>
-				  <div class="modal-footer">
-					<div class="form-group">
 						<div class="input-group pull-right">
-						<button type="submit" class="btn btn-success pull-right" name="login" value="Entrar">Entrar</button>
+							<button type="submit" class="btn btn-success pull-right" name="login" value="Entrar">Entrar</button>
 						</div>
-					</div>
-					<?php 
-					$unique = md5(uniqid(rand(), true));
-					//setcookie('id_sessao', $unique, time()+300);
-					echo "<input type=hidden value='$unique' name=id_sessao>";
-					
-					?>
+						<?php 
+						$unique = md5(uniqid(rand(), true));
+						echo "<input type=hidden value='$unique' name=id_sessao>";
+						?>
 					</form>
 				  </div>
 				</div>
@@ -168,7 +161,6 @@
 		</p>
 	</div>
 </div>
-
 	
 
 	<!-- /container -->

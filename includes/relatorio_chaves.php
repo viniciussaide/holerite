@@ -48,7 +48,7 @@ if(!empty($_SESSION['posts']['matriculas'])) {
 		<?php
 		$espaco += 1;
 		if ($espaco%4==0){
-			echo "</br></br></br></br>";
+			echo "</br></br></br></br></br></br></br></br>";
 		}
 	}
 }

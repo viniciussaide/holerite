@@ -1,5 +1,5 @@
 <?php
-include 'contador.php';
+include ("contador.php");
    if (isset($_COOKIE['counte'])) {
       $counte = $_COOKIE['counte'] + 1;
   } else {

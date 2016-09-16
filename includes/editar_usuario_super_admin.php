@@ -11,11 +11,11 @@ if($result){
 	$cargo = $row['cargo'];
 	$email = $row['email'];
 ?>
-<form method="POST" action="?pagina=gerenciar_usuarios.php">
+<form method="POST" action="?pagina=<?php echo $gerenciar;?>">
 	<input type="hidden" value='<?php echo $matricula;?>' name="matricula" id="matricula">
 	<!--Modal resetar Senha-->
 	<div class="modal fade" id="modal_reset_senha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+	  <div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content panel panel-danger">
 		  <div class="modal-header panel-heading">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -34,7 +34,7 @@ if($result){
 	<!--Fim Modal resetar Senha-->
 	<!--Modal gerar nova chave-->
 	<div class="modal fade" id="modal_gerar_chave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+	  <div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content panel panel-danger">
 		  <div class="modal-header panel-heading">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -53,7 +53,7 @@ if($result){
 	<!--Fim gerar nova chave-->
 	<!--Modal apagar usuario-->
 	<div class="modal fade" id="modal_apagar_usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+	  <div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content panel panel-danger">
 		  <div class="modal-header panel-heading">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

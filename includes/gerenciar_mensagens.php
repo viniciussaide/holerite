@@ -10,7 +10,6 @@ elseif(isset($_SESSION['posts']['nova_mensagem'])){
 }
 elseif(isset($_SESSION['posts']['salvar_nova_mensagem'])){
 	include "includes/salvar_nova_mensagem.php";
-	Kint::dump($_SESSION['posts']);
 }
 elseif(isset($_SESSION['posts']['apagar_mensagem'])){
 	include "includes/apagar_mensagem.php";
@@ -20,5 +19,3 @@ else {
 }
 unset($_SESSION['posts']);
 ?>
-
-

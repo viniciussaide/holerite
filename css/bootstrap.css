@@ -3931,7 +3931,7 @@ border-color:#e7e7e7
  }  
 .navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:focus,.navbar-default .navbar-nav>.open>a:hover{ 
 color:#555; 
-background-color:#e7e7e7
+background-color:#6cc3b0
  }  
 @media (max-width:767px){ 
 .navbar-default .navbar-nav .open .dropdown-menu>li>a{ 
@@ -5043,11 +5043,9 @@ overflow-x:hidden;
 overflow-y:auto
  }  
 .modal-dialog{ 
-position:absolute; 
-width:400px; 
-top:50%; 
-left:50%; 
-
+  position: relative;
+  width: auto;
+  margin: 10px;
  }  
 .modal-content{ 
 position:relative; 
@@ -5117,11 +5115,9 @@ overflow:scroll
  }  
 @media (min-width:768px){ 
 .modal-dialog{ 
-position:absolute; 
-width:400px; 
-top:50%; 
-left:50%; 
-
+    width: 600px;
+    margin: 30px auto;
+	margin-top: 10%;
  }  
 .modal-content{ 
 -webkit-box-shadow:0 5px 15px rgba(0,0,0,.5); 

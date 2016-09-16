@@ -65,7 +65,7 @@ class Login
 				
 
                 //Query para buscar matrícula no banco
-                $sql = "SELECT matricula, nome, user_password_hash, uniqueCode, id_sessao
+                $sql = "SELECT matricula, cpf, nome, user_password_hash, uniqueCode, id_sessao, cargo, email
                         FROM users
                         WHERE matricula = '$matricula'";
                 $result_of_login_check = $this->db_connection->query($sql);
@@ -96,42 +96,42 @@ class Login
 								$_SESSION['user_name'] = $result_row->matricula;
 								$_SESSION['nome'] = $result_row->nome;
 								$_SESSION['nome'] = trim($_SESSION['nome']);
+								$_SESSION['cpf'] = $result_row->cpf;
+								$_SESSION['cargo'] = $result_row->cargo;
+								$_SESSION['email'] = $result_row->email;
 								$nome = explode(" ", $_SESSION['nome']);
 								$_SESSION['primeiro_nome'] = $nome[0];
 								$_SESSION['ultimo_nome'] = $nome[count($nome)-1];
 								$_SESSION['user_login_status'] = 1;
-								$sql = "SELECT * FROM `relacao_type_user` join user_type on relacao_type_user.fk_id_user_type=user_type.id_user_type Where relacao_type_user.fk_matricula='$matricula'";
+								$sql = "SELECT * FROM `relacao_type_user` join user_type on relacao_type_user.fk_id_user_type=user_type.id_user_type Where relacao_type_user.fk_matricula='$matricula' GROUP BY type ORDER BY id_user_type;";
 								$result = $this->db_connection->query($sql);
-								$user_type = array();
-								$_SESSION['query_restricao'] = '';
-								while($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-									$user_type[] = $row['id_user_type'];
-								}
-								$_SESSION['user_type'] = $user_type;
-								foreach ($_SESSION['user_type'] as $type){
-									if ($_SESSION['query_restricao']<>''){
-										$_SESSION['query_restricao'] .= " OR ";
+								$query_restricao = '';
+								$user_default = "fk_id_user_type = 2";
+								while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+									if ($query_restricao<>''){
+										$query_restricao .= " OR ";
 									}
-									$_SESSION['query_restricao'] .= "fk_id_user_type = $type";
+									$query_restricao .= "fk_id_user_type = ". $row['id_user_type'];
 								}
-								if (!isset($_SESSION['id_sessao'])){
+								$_SESSION['query_restricao'] = $query_restricao;
+								if (isset($_POST['id_sessao'])){
 									$_SESSION['id_sessao'] = $_POST['id_sessao'];
-									$_SESSION['tempo_sessao'] = time()+SESSION_TIME;
-									setcookie('id_sessao', $_SESSION['id_sessao']);
-									$id_sessao = $_SESSION['id_sessao'];
-									$sql = "UPDATE users SET id_sessao = '$id_sessao' WHERE matricula ='$matricula'";
-									$this->db_connection->query($sql);
 								}
+								if ($query_restricao==$user_default){
+									$_SESSION['tempo_sessao'] = time()+SESSION_TIME;
+								}
+								else {
+									$_SESSION['tempo_sessao'] = time()+36000;
+								}
+								setcookie('id_sessao', $_SESSION['id_sessao']);
+								$id_sessao = $_SESSION['id_sessao'];
+								$sql = "UPDATE users SET id_sessao = '$id_sessao' WHERE matricula ='$matricula'";
+								$this->db_connection->query($sql);
 								header ("location:index.php?pagina=home.php");
 							}
 							elseif (($_SESSION['tempo_sessao']<time()) AND (isset($_SESSION['id_sessao']))) {
 								//Caso exista uma sessão aberta e o tempo da sessao se esgotou, expira login
 								header ("location:index.php?timeout");
-							}
-							elseif (isset($_SESSION['id_sessao']) AND ($_SESSION['id_sessao']==$id_sessao)){
-								//Caso sessão esteja correta, renova tempo da sessão
-								setcookie('id_sessao', $_SESSION['id_sessao']);
-								$_SESSION['tempo_sessao'] = time()+SESSION_TIME;
 							}
 							else{
 								//Caso algum erro não documentado ocorra, força logout
@@ -145,7 +145,7 @@ class Login
 							//Mensagem de erro caso senha incorreta
 							$this->errors[] = "<strong>Senha incorreta.</strong><p></p>
 							<div class='form-horizontal' style='text-align:center;'>
-							<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Tente Novamente</a></p>
+							<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Tente Novamente</a></p>
 							<a class='btn btn-primary form-group' style='width:150px' href='recuperar_senha.php'>Solicite outra</a>
 							</div>";
 						}
@@ -154,14 +154,14 @@ class Login
 						//Mensagem de erro caso chave de segurança incorreta
 						$this->errors[] = "<strong>Chave de Segurança incorreta.</strong><p></p>
 						<div class='form-horizontal' style='text-align:center;'>
-						<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Tente Novamente</a></p>
+						<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Tente Novamente</a></p>
 						</div>";
 					}
                 } else {
 					//Mensagem de erro caso matrícula não exista
                     $this->errors[] = "<strong>Este usuário não existe.</strong><p></p>
 					<div class='form-horizontal' style='text-align:center;'>
-					<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Tente Novamente</a></p>
+					<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Tente Novamente</a></p>
 					</div>";
                 }
             } else {
@@ -199,7 +199,7 @@ class Login
 			session_destroy();
 			$this->errors[] = "<strong>Sessão com problema.</strong></br>Identificamos que seu usuário estava logado em outro dispositivo, a partir de agora as sessões antigas foram encerradas. Caso você não tenha realizado outro login, sugerimos que altere sua senha.<p></p>
 			<div class='form-horizontal' style='text-align:center;'>
-			<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Tente Novamente</a></p>
+			<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Tente Novamente</a></p>
 			</div>";
 		}
 		else {
@@ -208,7 +208,7 @@ class Login
 			session_destroy();
 			$this->errors[] = "<strong>Sessão com problema.</strong></br>Identificamos que seu usuário estava logado em outro dispositivo, a partir de agora as sessões antigas foram encerradas. Caso você não tenha realizado outro login, sugerimos que altere sua senha.<p></p>
 			<div class='form-horizontal' style='text-align:center;'>
-			<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Tente Novamente</a></p>
+			<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Tente Novamente</a></p>
 			</div>";
 		}
 	}
@@ -225,17 +225,21 @@ class Login
 			session_destroy();
 			$this->errors[] = "<strong>Login expirou!</strong></br>Sua sessão ficou inativa por muito tempo, e por isso foi finalizada por segurança.</br><p></p>
 			<div class='form-horizontal' style='text-align:center;'>
-			<p><a class='btn btn-default form-group' style='width:150px' data-toggle='modal' data-target='#login, #error'>Logue Novamente</a></p>
+			<p><a class='btn btn-default form-group' style='width:150px' data-dismiss='modal' data-toggle='modal' data-target='#login'>Logue Novamente</a></p>
 			</div>";
 		}
 	}
 	
 	public function message(){
 		//Mensagem que aparece na página inicial
-        $_SESSION = array();
-        $this->messages[] = "<strong>A partir do dia 01/05/2016 será implantado uma chave de segurança.</strong></br>
-		Nos dias 18, 19, 20 e 22, as chaves estarão no setor de ponto para serem retiradas.</br>
-		A partir do dia 25/04/2016 favor retirá-las no Departamento Pessoal.<p></p>";
+		$_SESSION = array();
+		$this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		$this->db_connection->set_charset("utf8");
+		$query = "SELECT * FROM mensagem WHERE tela_inicial=1";
+		$result = $this->db_connection->query($query);
+		$row = $result->fetch_object();
+		$this->titulo_mensagem = $row->titulo;
+		$this->messages[] = $row->mensagem;
     }
 
     public function isUserLoggedIn(){

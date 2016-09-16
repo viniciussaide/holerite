@@ -20,7 +20,7 @@ if($result){
 	<form action="?pagina=gerenciar_mensagens.php" method="POST">
 		<!--Modal apagar Funcao-->
 		<div class="modal fade" id="modal_apagar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+		  <div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content panel panel-danger">
 			  <div class="modal-header panel-heading">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -53,18 +53,18 @@ if($result){
 					<textarea class="form-control" name="mensagem" placeholder="Mensagem" rows="5" maxlength="2500" style="resize: none;"><?php echo $mensagem;?></textarea>
 				</div>
 				<div class="form-group">
-					<label>Data Início: </label><input class="form-control" type="text" name="data_inicio" id="data_inicio" value="<?php echo $data_inicio;?>">
+					<label>Data Início: </label><input class="form-control" type="text" name="data_inicio" id="data_inicio" value="<?php echo $data_inicio;?>" required>
 				</div>
 				<div class="form-group">
-					<label>Data Fim: </label><input class="form-control" type="text" name="data_fim" id="data_fim" value="<?php echo $data_fim;?>">
+					<label>Data Fim: </label><input class="form-control" type="text" name="data_fim" id="data_fim" value="<?php echo $data_fim;?>" required>
 				</div>
 				<?php 
-				if ($tela_inicial==true){
+/* 				if ($tela_inicial==true){
 					echo "<label><input type='checkbox' name='tela_inicial' checked> Mensagem na Tela Inicial</label>";
 				}
 				else {
 					echo "<label><input type='checkbox' name='tela_inicial'> Mensagem na Tela Inicial</label>";
-				}
+				} */
 				?>
 			</div>
 		</div>
@@ -72,20 +72,20 @@ if($result){
 			<div>
 				<label>Permissão para Editar Mensagem</label>
 					<?php
-					$query = "SELECT * FROM user_type LEFT JOIN relacao_type_mensagem ON fk_id_user_type=id_user_type AND fk_id_mensagem='$id_mensagem' AND (".$_SESSION['query_restricao'].") GROUP BY id_user_type";
+					$query = "SELECT * FROM user_type LEFT JOIN relacao_type_mensagem ON fk_id_user_type=id_user_type AND fk_id_mensagem='$id_mensagem' GROUP BY id_user_type";
 					$result = mysqli_query($conn, $query);
 					while($row = mysqli_fetch_array($result, MYSQL_ASSOC)){
 						$type = $row['type'];
 						$id_user_type = $row['id_user_type'];
-						if ($row['fk_id_mensagem']==$id_mensagem){
+						if (($row['fk_id_mensagem']==$id_mensagem)AND(($id_user_type<>'1')AND($id_user_type<>'2'))){
 							echo "<div class='checkbox'><label><input type='checkbox' name='permissao[]' value='$id_user_type' checked> $type</label></div>";
 						}
-						elseif($row['id_user_type']<>'2') {
+						elseif(($id_user_type<>'1')AND($id_user_type<>'2')) {
 							echo "<div class='checkbox'><label><input type='checkbox' name='permissao[]' value='$id_user_type'> $type</label></div>";
 						}
 					}
 					?>
-				<p align="center"><label>Usuários</label></p>
+				<h3 align="center"><span class="label label-info">Usuários</span></h3>
 				<div class="col-md-6 form-group">
 					<label>Mostrar Mensagem para:</label>
 					<select multiple id="select1" size='20' class="form-control" name="permissao_usuarios[]">
@@ -110,6 +110,22 @@ if($result){
 							$matricula = $row['matricula'];
 							$nome = $row['nome'];
 							echo "<option value='$matricula'>$matricula - $nome</option>";
+						}
+						?>
+					</select>
+				</div>
+				<div class="col-md-12 form-group">
+					<label>Já foram notificados:</label>
+					<select size='20' class="form-control">
+						<?php
+						$query = "SELECT * FROM relacao_mensagem_user JOIN users ON matricula=fk_matricula WHERE fk_id_mensagem='$id_mensagem' and data_visualizacao<>'' ORDER BY matricula";
+						$result_2 = mysqli_query($conn, $query);
+						while ($row = mysqli_fetch_array($result_2, MYSQL_ASSOC)){
+							$matricula = $row['matricula'];
+							$nome = $row['nome'];
+							$data_visualizacao = strtotime($row['data_visualizacao']);
+							$data_visualizacao = date('d/m/Y', $data_visualizacao);
+							echo "<option>$matricula - $nome >>>Visualizado: $data_visualizacao</option>";
 						}
 						?>
 					</select>

@@ -10,7 +10,7 @@
 		<form action="?pagina=gerenciar_grupos.php" method="POST">
 			<!--Modal apagar Grupo-->
 			<div class="modal fade" id="modal_apagar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog " role="document" style="width:300px;margin-top:-150px;margin-left:-150px;">
+			  <div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content panel panel-danger">
 				  <div class="modal-header panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

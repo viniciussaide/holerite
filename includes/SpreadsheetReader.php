@@ -1488,7 +1488,7 @@ class SpreadsheetReader {
 						$len = ($asciiEncoding)?$numChars : $numChars*2;
 						$retstr =substr($data, $xpos, $len);
 						$xpos += $len;
-						$retstr = ($asciiEncoding)? $retstr : $this->_encodeUTF16($retstr);
+						$retstr = ($asciiEncoding) ? utf8_encode($retstr) : $this->_encodeUTF16($retstr);
 					}
 					elseif ($version == SPREADSHEET_EXCEL_READER_BIFF7){
 						// Simple byte string

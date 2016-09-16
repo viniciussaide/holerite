@@ -42,7 +42,7 @@
 		<ul class="nav navbar-nav navbar-right">
 		<li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		  <?php echo "<b>$_SESSION[primeiro_nome]"." "."$_SESSION[ultimo_nome]"; ?>, você está logado</b>
+		  <?php echo "<b>$_SESSION[primeiro_nome]"." "."$_SESSION[ultimo_nome]"; ?></b>
 		  <span class="caret"></span></a>
 			<ul class="dropdown-menu dropdown-menu-right">
 			<?php

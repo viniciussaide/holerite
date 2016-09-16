@@ -14,47 +14,50 @@
 	if ($data_fim<>''){
 		$data_fim = substr($data_fim,6,4)."-".substr($data_fim,3,2)."-".substr($data_fim,0,2);
 	}
-	if (isset($_SESSION['posts']['tela_inicial'])){
+/* 	if (isset($_SESSION['posts']['tela_inicial'])){
 		$tela_inicial = 1;
 	}
 	else {
 		$tela_inicial = 0;
-	}
+	} */
 	if (isset($_SESSION['posts']['permissao_usuarios'])){
 		$lista_usuarios = $_SESSION['posts']['permissao_usuarios'];
 	}
 	if (isset($_SESSION['posts']['permissao'])){
 		$permissao_edicao = $_SESSION['posts']['permissao'];
 	}
-	$query = "UPDATE mensagem SET titulo='$titulo_mensagem', descricao='$descricao_mensagem', mensagem='$mensagem', data_inicio='$data_inicio', data_fim='$data_fim', tela_inicial='$tela_inicial' WHERE id_mensagem='$id_mensagem'";
+	//$query = "UPDATE mensagem SET titulo='$titulo_mensagem', descricao='$descricao_mensagem', mensagem='$mensagem', data_inicio='$data_inicio', data_fim='$data_fim', tela_inicial='$tela_inicial' WHERE id_mensagem='$id_mensagem'";
+	$query = "UPDATE mensagem SET titulo='$titulo_mensagem', descricao='$descricao_mensagem', mensagem='$mensagem', data_inicio='$data_inicio', data_fim='$data_fim' WHERE id_mensagem='$id_mensagem'";
 	$result = mysqli_query($conn_root, $query);
 	if ($result){
 		$query = "DELETE FROM relacao_type_mensagem WHERE fk_id_mensagem='$id_mensagem'";
 		$result = mysqli_query($conn_root, $query);
 		if ($result){
+			$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('1','$id_mensagem')";
+			mysqli_query($conn_root, $query);
 			if (isset($permissao_edicao)){
 				foreach ($permissao_edicao as $permissao){
 					$permissao = mysqli_real_escape_string ($conn_root,$permissao);
 					$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('$permissao','$id_mensagem')";
 					mysqli_query($conn_root, $query);
 				}
-				$query = "DELETE FROM relacao_mensagem_user WHERE fk_id_mensagem='$id_mensagem'";
-				mysqli_query($conn_root, $query);
-				if ($result){
-					if (isset($lista_usuarios)){
-						foreach ($lista_usuarios as $usuario){
-							$usuario = mysqli_real_escape_string ($conn_root,$usuario);
-							$query = "INSERT INTO relacao_mensagem_user (`fk_id_mensagem`, `fk_matricula`, `data_visualizacao`) VALUES ('$id_mensagem', '$usuario', NULL);";
-							mysqli_query($conn_root, $query);
-						}
-						include "includes/salvo_com_sucesso.php";
-						include "includes/lista_mensagens.php";
+			}
+			$query = "DELETE FROM relacao_mensagem_user WHERE fk_id_mensagem='$id_mensagem'";
+			mysqli_query($conn_root, $query);
+			if ($result){
+				if (isset($lista_usuarios)){
+					foreach ($lista_usuarios as $usuario){
+						$usuario = mysqli_real_escape_string ($conn_root,$usuario);
+						$query = "INSERT INTO relacao_mensagem_user (`fk_id_mensagem`, `fk_matricula`, `data_visualizacao`) VALUES ('$id_mensagem', '$usuario', NULL);";
+						mysqli_query($conn_root, $query);
 					}
 				}
-				else {
-					include "includes/salvo_com_erro.php";
-					include "includes/lista_mensagens.php";
-				}
+				include "includes/salvo_com_sucesso.php";
+				include "includes/lista_mensagens.php";
+			}
+			else {
+				include "includes/salvo_com_erro.php";
+				include "includes/lista_mensagens.php";
 			}
 		}
 		else {

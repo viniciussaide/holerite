@@ -33,6 +33,8 @@
 		$result = mysqli_query($conn_root, $query);
 		if ($result){
 			if (isset($permissao_edicao)){
+				$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('1','$id_mensagem')";
+				mysqli_query($conn_root, $query);
 				foreach ($permissao_edicao as $permissao){
 					$permissao = mysqli_real_escape_string ($conn_root,$permissao);
 					$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('$permissao','$id_mensagem')";
