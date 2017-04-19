@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 	if (isset($_FILES)AND (sizeof($_FILES)>=1)){
 		include("includes/upload.php");
 	}
- 	elseif( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+ 	elseif( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' )){
 		parse_str(parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY), $urlparams);
 		$query = "SELECT * FROM funcao JOIN relacao_type_funcao ON funcao.id_funcao = relacao_type_funcao.fk_id_funcao WHERE (".$_SESSION['query_restricao'].") AND pagina_php='".$urlparams['pagina']."'";
 		$result = mysqli_query($conn, $query);

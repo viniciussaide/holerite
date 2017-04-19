@@ -32,31 +32,35 @@
 		$query = "DELETE FROM relacao_type_mensagem WHERE fk_id_mensagem='$id_mensagem'";
 		$result = mysqli_query($conn_root, $query);
 		if ($result){
+			$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('1','$id_mensagem')";
+			mysqli_query($conn_root, $query);
 			if (isset($permissao_edicao)){
-				$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('1','$id_mensagem')";
-				mysqli_query($conn_root, $query);
 				foreach ($permissao_edicao as $permissao){
 					$permissao = mysqli_real_escape_string ($conn_root,$permissao);
 					$query = "INSERT INTO relacao_type_mensagem (`fk_id_user_type`, `fk_id_mensagem`) VALUES ('$permissao','$id_mensagem')";
 					mysqli_query($conn_root, $query);
 				}
-				$query = "DELETE FROM relacao_mensagem_user WHERE fk_id_mensagem='$id_mensagem'";
-				mysqli_query($conn_root, $query);
-				if ($result){
-					if (isset($lista_usuarios)){
-						foreach ($lista_usuarios as $usuario){
-							$usuario = mysqli_real_escape_string ($conn_root,$usuario);
-							$query = "INSERT INTO relacao_mensagem_user (`fk_id_mensagem`, `fk_matricula`, `data_visualizacao`) VALUES ('$id_mensagem', '$usuario', NULL);";
-							mysqli_query($conn_root, $query);
-						}
-						include "includes/salvo_com_sucesso.php";
-						include "includes/lista_mensagens.php";
+			}
+			$query = "DELETE FROM relacao_mensagem_user WHERE fk_id_mensagem='$id_mensagem'";
+			mysqli_query($conn_root, $query);
+			if ($result){
+				if (isset($lista_usuarios)){
+					foreach ($lista_usuarios as $usuario){
+						$usuario = mysqli_real_escape_string ($conn_root,$usuario);
+						$query = "INSERT INTO relacao_mensagem_user (`fk_id_mensagem`, `fk_matricula`, `data_visualizacao`) VALUES ('$id_mensagem', '$usuario', NULL);";
+						mysqli_query($conn_root, $query);
 					}
-				}
-				else {
-					include "includes/salvo_com_erro.php";
+					include "includes/salvo_com_sucesso.php";
 					include "includes/lista_mensagens.php";
 				}
+				else {
+					include "includes/salvo_com_sucesso.php";
+					include "includes/lista_mensagens.php";
+				}
+			}
+			else {
+				include "includes/salvo_com_erro.php";
+				include "includes/lista_mensagens.php";
 			}
 		}
 		else {

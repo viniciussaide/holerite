@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE);
+/* error_reporting(E_ALL ^ E_NOTICE);
 require "includes/SpreadsheetReader.php";
 use \PHPExcelReader\SpreadsheetReader as Reader;
 
@@ -32,5 +32,5 @@ for ($i=2; $i<=$itens;$i++){
 	if ($result){
 		echo "Matrícula: $matricula Setor: $setor Cargo: $cargo </br>";
 	}
-}
+} */
 //echo $data->dump(true,true);?>

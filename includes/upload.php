@@ -66,7 +66,7 @@ elseif (isset($_SESSION['posts']['importar_efetivo'])){
 	$tmpfile = $tmpdir . basename($_FILES['arquivo_efetivo']['name']);
 	$uploadfile = $uploaddir . basename($_FILES['arquivo_efetivo']['name']);
 	$filetype = pathinfo($tmpfile,PATHINFO_EXTENSION);
-	if (($filetype=='xls') OR ($filetype=='xlsx')){
+	if (($filetype=='xls') OR ($filetype=='xlsx')OR($filetype=='XLS') OR ($filetype=='XLSX')){
 		move_uploaded_file($_FILES['arquivo_efetivo']['tmp_name'], $tmpfile);
 		$data = new Reader($tmpfile);
 		$itens = $data->rowcount($sheet_index=0);
@@ -75,7 +75,7 @@ elseif (isset($_SESSION['posts']['importar_efetivo'])){
 		$coluna3 = $data->value(1,3);
 		$coluna4 = $data->value(1,4);
 		$coluna5 = $data->value(1,5);
-		if (($coluna1=='Nº pessoal')AND($coluna2=='Nome completo')AND($coluna3=='Centro de custo')AND($coluna4=='VR')AND($coluna5=='Cargo')){
+		if (($coluna1=='Nº pessoal')AND($coluna2=='Nome completo')AND($coluna3=='Centro de custo')AND($coluna4=='Vr')AND($coluna5=='Cargo')){
 			$files = glob('arquivos/efetivo/*');
 			foreach($files as $file){
 			  if(is_file($file))

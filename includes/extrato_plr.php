@@ -50,7 +50,7 @@
 			$cpf_mask = substr($cpf,0,3).".".substr($cpf,3,3).".".substr($cpf,6,3)."-".substr($cpf,9,2);
 			?>
 			<!-- Inicio da tabela da PLR para apresentação e impressão -->
-					<div align=right><b>Ano base: </b>2015</div>
+					<div align=right><b>Ano base: </b>2016</div>
 					<thead style="font-weight:bold;border-top: 1px solid #D5D5D5;border-bottom: 1px solid #D5D5D5;" bgcolor="#D5D5D5"><td>Matrícula</td><td colspan=2>Nome</td><td>CPF</td></thead>
 					<tr><td><?php echo $user_name; ?></td><td colspan=2><?php echo $nome; ?></td><td><?php echo $cpf_mask; ?></td></tr><tr><td colspan=4></br></br></br></td></tr>
 			<?php
@@ -64,19 +64,19 @@
 			else {
 				echo "<td>Faltas não justificadas: $falta_injust</td>";
 			}
-			if ($total_disciplina=='42,00'){
+			if ($total_disciplina=='50,00'){
 				echo "<td>100%</td>";
 			}
-			elseif ($total_disciplina=='25,00') {
+			elseif ($total_disciplina=='30,00') {
 				echo "<td>60%</td>";
 			}
-			elseif ($total_disciplina=='13,00') {
-				echo "<td>60%</td>";
+			elseif ($total_disciplina=='15,00') {
+				echo "<td>30%</td>";
 			}
 			else {
 				echo "<td>0%</td>";
 			}
-			if ($total_atendimento=='122,00'){
+			if ($total_atendimento=='60,00'){
 				echo "<td>Todos</td>";
 			}
 			else{
@@ -84,7 +84,7 @@
 			}
 			echo "<td>Sem Danos</td>";
 			echo "</tr>";
-			echo "<tr align=center><td>Máximo: R$ 219,00</td><td>Máximo: R$ 42,00</td><td>Máximo: R$ 122,00</td><td>Máximo: R$ 37,00</td></tr>";
+			echo "<tr align=center><td>Máximo: R$ 250,00</td><td>Máximo: R$ 50,00</td><td>Máximo: R$ 60,00</td><td>Máximo: R$ 40,00</td></tr>";
 
 			echo "<tr align=center>";
 			echo "<td>Recebido: R$ $total_falta</td>";

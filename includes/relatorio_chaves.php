@@ -15,7 +15,7 @@ if(!empty($_SESSION['posts']['matriculas'])) {
 		echo "<div class=col-xs-7 style='border-right: 1px solid #999999;'>";
 		?>
 				<p align='center'><b>CHAVE DE SEGURANÇA</b></p>
-				<p align='center' style='font-size: 12px;'>Holerite Online Sankyu: <b>http://holeriteonline.sankyu.com.br</b></p>
+				<p align='center' style='font-size: 12px;'>Holerite Online Sankyu: <b>http://holeriteonline.sankyu.com.br/holerite</b></p>
 				<p style='font-size: 12px;'>Você está recebendo um código com 4 caracteres, ele será sua chave de segurança para acessar seu holerite, use-o em conjunto com sua senha pessoal. Guarde-o em local seguro, não revele a terceiros, ele é de uso pessoal e de sua responsabilidade.</p>
 				<div align='center' style='font-size: 12px;'><i>Dúvidas entre em contato com a Administração.</i></div>
 				<p align='center' style='font-size: 12px;'><i>Ramal: 6099</i></p>

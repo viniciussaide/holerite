@@ -121,7 +121,7 @@ class Login
 									$_SESSION['tempo_sessao'] = time()+SESSION_TIME;
 								}
 								else {
-									$_SESSION['tempo_sessao'] = time()+36000;
+									$_SESSION['tempo_sessao'] = time()+360000;
 								}
 								setcookie('id_sessao', $_SESSION['id_sessao']);
 								$id_sessao = $_SESSION['id_sessao'];

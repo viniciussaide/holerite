@@ -5,12 +5,16 @@
  * DB_NAME: nome do banco de dados
  * DB_USER: nome do usuário de acesso ao banco
  * DB_PASS: senha de acesso ao banco
+ * DB_USER_ROOT: nome do usuário root de acesso ao banco
+ * DB_PASS_ROOT: senha de acesso root ao banco
  * SESSION_TIME: tempo da sessão, dado em segundos
  */
-define("DB_HOST", "");
-define("DB_NAME", "");
-define("DB_USER", "");
-define("DB_PASS", "");
-define("SESSION_TIME", 0);
-define("EMAIL", "")
+define("DB_HOST", "localhost");
+define("DB_NAME", "holerite");
+define("DB_USER", "user_holerite");
+define("DB_PASS", "maint4xpto");
+define("DB_USER_ROOT", "root");
+define("DB_PASS_ROOT", "");
+define("SESSION_TIME", 300);
+define("EMAIL", "informaticavr@sankyu.com.br");
 ?>
