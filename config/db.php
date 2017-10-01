@@ -12,9 +12,9 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "holerite");
 define("DB_USER", "user_holerite");
-define("DB_PASS", "maint4xpto");
-define("DB_USER_ROOT", "root");
+define("DB_PASS", "");
+define("DB_USER_ROOT", "");
 define("DB_PASS_ROOT", "");
 define("SESSION_TIME", 300);
-define("EMAIL", "informaticavr@sankyu.com.br");
+define("EMAIL", "");
 ?>
